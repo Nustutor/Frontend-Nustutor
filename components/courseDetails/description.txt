@@ -1,0 +1,11 @@
+               <span className="flex-grow-0 flex-shrink-0 text-lg text-left text-black">
+                  Description of the course, may span to upto three lines xoxo, this is a 4
+                </span>
+                <br />
+                <span className="flex-grow-0 flex-shrink-0 text-lg text-left text-black">
+                  credit hour course, essential for seecs students to pass in the first sem-
+                </span>
+                <br />
+                <span className="flex-grow-0 flex-shrink-0 text-lg text-left text-black">
+                  ester.
+                </span>
