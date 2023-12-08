@@ -1,6 +1,16 @@
+"use client"
+
 import React from 'react'
+import { useRouter } from 'next/navigation';
 
 const CourseCard = ({img,category,title,description}) => {
+
+  const router = useRouter();
+
+  const handleEnrollClick = () => {
+    router.push('/onboarding/signup');
+  };
+
   return (
     <div className="flex flex-col justify-start items-start flex-grow relative gap-6 rounded-[5px] bg-[#f7f7f7]">
             <img
@@ -41,11 +51,12 @@ const CourseCard = ({img,category,title,description}) => {
                 </p>
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[382px] gap-4">
-                <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2 px-5 py-2 rounded-[5px] border border-black">
-                  <p className="flex-grow-0 flex-shrink-0 text-base text-left text-black">
-                    Enroll Now
-                  </p>
-                </div>
+                <button
+                  onClick={handleEnrollClick}
+                  className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2 px-5 py-2 rounded-[5px] border border-black text-base text-left text-black cursor-pointer"
+                >
+                  Enroll Now
+                </button>
               </div>
             </div>
           </div>
