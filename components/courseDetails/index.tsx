@@ -8,7 +8,7 @@ const CoursePage = () => {
       Category="Computer Science"
       Title={`Programming Fundamentals`}
       CourseDescription="4 Credit Hour Course" 
-      CourseHero={"/courseImg.png"}  />
+      CourseHero={"/courseListing.png"}  />
   )
 }
 
