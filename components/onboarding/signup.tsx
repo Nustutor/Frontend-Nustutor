@@ -4,8 +4,10 @@ import React from 'react'
 import { useState } from 'react'
 import InputField from './inputField'
 import Dropdown from './dropdown'
+import { useRouter } from 'next/navigation';
 
 const Signup = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -64,21 +66,20 @@ const Signup = () => {
         const formDataToSend = {
           email: formData.email,
           password: formData.password,
-          firstname: formData.fullName, // Assuming fullName is the user's first name
-          lastname: '', // You can add the last name if it's part of your form
+          fullname: formData.fullName, // Assuming fullName is the user's first name
           semester: formData.Semester,
           degree: formData.Degree,
           dept: formData.Department,
           bio: '', // You can add bio if it's part of your form
         };
-    
+        console.log('formDataToSend:', formDataToSend);
         // Make API call to the backend
         const response = await fetch('http://localhost:4306/api/v1/signup ', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(formDataToSend),
         });
     
         // Handle the response from the API
@@ -86,6 +87,8 @@ const Signup = () => {
           // Successful signup
           const responseData = await response.json();
           console.log('Signup successful:', responseData);
+          // redirect to home page
+          router.push('/home');
         } else {
           // Error during signup
           const errorData = await response.json();
@@ -96,7 +99,7 @@ const Signup = () => {
       }
   }
 
-  console.log("FOO",formData);
+  // console.log("FOO",formData);
 
   return (
     <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
