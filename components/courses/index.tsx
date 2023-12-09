@@ -3,8 +3,8 @@ import CourseCard from './courseCard';
 
 const Course = () => {
   return (
-    <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 py-24 bg-white">
-  <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 w-[1440px] overflow-hidden gap-[60px] px-16 py-28 bg-white">
+    <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 py-24 bg-[#808080]/[0.08]">
+  <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 w-[1440px] overflow-hidden gap-[60px] px-16 py-28 bg-[#808080]/[0.08]">
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[768px] gap-4">
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-6">
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[768px] text-[56px] font-bold text-center text-black">
