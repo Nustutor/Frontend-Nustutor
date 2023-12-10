@@ -99,6 +99,10 @@ const Signup = () => {
       }
   }
 
+  const backClick = () => {
+    router.push('/')
+  }
+
   // console.log("FOO",formData);
 
   return (
@@ -125,7 +129,8 @@ const Signup = () => {
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-8">
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[169px]">
-          <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px]">
+          <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px] cursor-pointer"
+          onClick = {backClick}>
             <svg
               width={20}
               height={20}
