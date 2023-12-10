@@ -6,157 +6,199 @@ import ProtectedField from './protectedField'
 const login = () => {
   return (
     <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
-  <div className="w-[737px] h-[825px]">
-    <div className="w-[737px] h-[825px] absolute left-[40.5px] top-[37.5px] rounded-[29px] bg-gradient-to-b from-[#977644]/[0.35] to-black/[0.35]" />
-    <div className="w-[476px] h-[82px]">
-      <div className="flex flex-col justify-start items-start absolute left-[110px] top-[709px] gap-4">
-        <p className="flex-grow-0 flex-shrink-0 w-[172px] text-[32px] font-bold text-left text-white">
-          Nustutor
-        </p>
-        <p className="flex-grow-0 flex-shrink-0 w-[476px] text-2xl text-left text-white">
-          Tutoring app for students, by students
-        </p>
-      </div>
-    </div>
-  </div>
-  <div className="w-[454px] h-[573px]">
-    <div className="w-[329px] h-[107px]">
-        <Toggle/>
-      <p className="absolute left-[1028px] top-[145px] text-base font-medium text-left text-black">
-        Welcome to Nustutor
-      </p>
-    </div>
-    <div className="w-[99px] h-3.5 cursor-pointer">
-      <p className="absolute left-[1213px] top-[627px] text-xs font-light text-left text-black">
-        Forgot Password ?
-      </p>
-    </div>
-    <div className="flex flex-col justify-start items-center absolute left-[889px] top-[304px] gap-16">
-      <div className="flex-grow-0 flex-shrink-0 w-[454px] h-[301px]">
-        <InputField label={"Username"} directive={"Enter your Username"}/>
-        <div className="w-[435px] h-[90px]">
-            <ProtectedField label={"Password"} directive={"Enter your Password"}/>
+    <div className="flex flex-col justify-start items-start absolute left-[45px] top-11 overflow-hidden gap-2.5 px-[19px] py-[75px] rounded-[32px] bg-[#1565d8]/90">
+      <img
+        src="/onboarding.png"
+        className="flex-grow-0 flex-shrink-0 w-[691px] h-[553px] object-contain"
+      />
+      <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-4 pl-16">
+        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative">
+          <p className="flex-grow-0 flex-shrink-0 w-[172px] text-[32px] font-bold text-left text-white">
+            Nustutor
+          </p>
         </div>
-        <p className="w-[454px] h-[49px] absolute left-0 top-0 text-base text-center text-[#5b5b5b]">
-          Tutoring app for students, by students.
-        </p>
+        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative">
+          <p className="flex-grow-0 flex-shrink-0 w-[476px] text-2xl text-left text-white">
+            Tutoring app for students, by students
+          </p>
+        </div>
       </div>
-      <div className="flex-grow-0 flex-shrink-0 w-[232px] h-[49px]">
-        <div className="w-[232px] h-[49px] absolute left-[110.5px] top-[364.5px] rounded-[36px] bg-[#9e896a]" />
-        <p className="absolute left-[205px] top-[378px] text-base text-left text-white">Login</p>
+    </div>
+    <div className="flex flex-col justify-start items-center absolute left-[793px] top-[72px] gap-16">
+      <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-8">
+        <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
+          <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[169px]">
+            <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px]">
+              <svg
+                width={20}
+                height={20}
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <path
+                  d="M14.8627 3.225L13.3794 1.75L5.1377 10L13.3877 18.25L14.8627 16.775L8.0877 10L14.8627 3.225Z"
+                  fill="white"
+                />
+              </svg>
+              <p className="flex-grow-0 flex-shrink-0 text-base font-semibold text-left text-white">
+                Back
+              </p>
+            </div>
+            <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
+              <svg
+                width={30}
+                height={34}
+                viewBox="0 0 30 34"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex-grow-0 flex-shrink-0 w-[29.76px] h-[32.62px]"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <mask
+                  id="mask0_255_4561"
+                  style={{ maskType: "alpha" }}
+                  maskUnits="userSpaceOnUse"
+                  x={0}
+                  y={0}
+                  width={30}
+                  height={34}
+                >
+                  <path
+                    d="M12.0589 1.44664C13.8053 0.438362 15.9569 0.438361 17.7033 1.44663L26.94 6.77944C28.6864 7.78771 29.7622 9.65108 29.7622 11.6676V22.3332C29.7622 24.3498 28.6864 26.2131 26.94 27.2214L17.7033 32.5542C15.9569 33.5625 13.8053 33.5625 12.0589 32.5542L2.8222 27.2214C1.07582 26.2131 0 24.3498 0 22.3332V11.6676C0 9.65108 1.07582 7.78771 2.8222 6.77944L12.0589 1.44664Z"
+                    fill="#C4C4C4"
+                  />
+                </mask>
+                <g mask="url(#mask0_255_4561)">
+                  <path
+                    d="M14.877 -0.463867L31.1888 8.95377L22.9339 13.3985L19.5242 11.5387L16.4244 11.8486L8.67499 9.05885L6.81512 11.5387L5.88519 12.7786L4.02533 11.5387L-1.43487 8.95377L14.877 -0.463867Z"
+                    fill="url(#paint0_linear_255_4561)"
+                  />
+                  <path
+                    d="M-0.128906 9.08775L6.19899 12.1563L9.91871 21.1457L9.91871 21.4557L11.1586 23.0055L16.7382 27.3452L14.8802 35.0843L-0.128907 26.4188L-0.128906 9.08775Z"
+                    fill="url(#paint1_linear_255_4561)"
+                  />
+                  <path
+                    d="M19.8341 21.4552L23.8638 12.7759L29.886 9.08966L29.886 26.4207L14.8769 35.0862L14.5645 27.3448L19.8341 21.4552Z"
+                    fill="url(#paint2_linear_255_4561)"
+                  />
+                  <path
+                    d="M14.8763 6.58301C12.3115 6.58301 9.9741 7.55649 8.21323 9.15408L9.6428 21.4618C10.0337 21.6422 12.2759 22.3918 12.7065 22.3918H15.8062C16.3541 22.3918 20.1459 21.2241 20.1459 21.7719L19.8359 20.4699C19.8359 21.0177 19.3919 21.4618 18.844 21.4618H10.9086C10.3608 21.4618 9.91667 21.0177 9.91667 20.4699V15.6679C9.91667 15.2373 9.82323 14.8118 9.6428 14.4208L8.21323 9.15408C6.61563 10.9149 4.95703 13.9375 4.95703 16.5023C4.95703 21.9806 9.39799 26.4216 14.8763 26.4216C20.3546 26.4216 24.7956 21.9806 24.7956 16.5023C24.7956 11.024 20.3546 6.58301 14.8763 6.58301Z"
+                    fill="url(#paint3_linear_255_4561)"
+                  />
+                  <path
+                    d="M13.0393 10.7229C13.2583 10.6384 13.4926 10.6053 13.7246 10.6259C13.9565 10.6466 14.18 10.7206 14.3781 10.8423C14.5761 10.964 14.7436 11.1302 14.8678 11.3283C14.9921 11.5264 15.0697 11.7512 15.095 11.9858C15.2751 13.6757 14.8956 15.3867 14.016 16.8504C13.1364 18.314 11.8066 19.4474 10.2352 20.0727L9.1231 17.1973C10.0618 16.8235 10.8568 16.1475 11.3846 15.2745C11.9124 14.4015 12.1433 13.3804 12.0415 12.3702C12.0044 12.0252 12.0821 11.6758 12.2624 11.3774C12.4427 11.079 12.7152 10.8486 13.0367 10.7229L13.0393 10.7229Z"
+                    fill="#9C5AFF"
+                  />
+                  <path
+                    d="M13.0263 10.728C12.6465 10.8793 12.3392 11.1765 12.1721 11.5542C12.005 11.9318 11.9917 12.3591 12.1352 12.742L15.3852 21.4088C15.5289 21.7917 15.8175 22.0987 16.1877 22.2625C16.5578 22.4263 16.9792 22.4334 17.3591 22.2822C17.5473 22.2074 17.7196 22.0959 17.8663 21.9542C18.0129 21.8124 18.131 21.6432 18.2137 21.4562C18.2965 21.2691 18.3423 21.068 18.3486 20.8641C18.3548 20.6603 18.3214 20.4578 18.2503 20.2682L15.0002 11.6013C14.9292 11.4117 14.8218 11.2387 14.6841 11.0921C14.5465 10.9456 14.3813 10.8284 14.1979 10.7473C14.0146 10.6662 13.8168 10.6227 13.6158 10.6194C13.4147 10.6161 13.2144 10.653 13.0263 10.728Z"
+                    fill="#9C5AFF"
+                  />
+                  <path
+                    d="M17.3452 22.2846C17.1263 22.3692 16.892 22.4024 16.6601 22.3818C16.4282 22.3612 16.2047 22.2872 16.0067 22.1656C15.8086 22.044 15.6411 21.8778 15.5169 21.6798C15.3927 21.4817 15.315 21.2569 15.2897 21.0224C15.1098 19.3325 15.4894 17.6214 16.3689 16.1577C17.2484 14.694 18.5781 13.5605 20.1493 12.9349L21.2614 15.8114C20.3228 16.1852 19.5277 16.8612 18.9999 17.7342C18.4722 18.6072 18.2412 19.6282 18.3431 20.6385C18.3796 20.9836 18.3013 21.3329 18.1206 21.6311C17.9398 21.9293 17.6669 22.1593 17.3452 22.2846Z"
+                    fill="#9C5AFF"
+                  />
+                </g>
+                <defs>
+                  <lineargradient
+                    id="paint0_linear_255_4561"
+                    x1="14.5646"
+                    y1="0.999443"
+                    x2="14.282"
+                    y2="12.3218"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#4E00D3" />
+                    <stop offset={1} stop-color="#7A36F0" />
+                  </lineargradient>
+                  <lineargradient
+                    id="paint1_linear_255_4561"
+                    x1="14.8783"
+                    y1="23.9355"
+                    x2="5.90272"
+                    y2="13.1738"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#5508D8" />
+                    <stop offset={1} stop-color="#7935EF" />
+                  </lineargradient>
+                  <lineargradient
+                    id="paint2_linear_255_4561"
+                    x1="14.8744"
+                    y1="25.175"
+                    x2="23.4474"
+                    y2="13.7158"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#5205D6" />
+                    <stop offset={1} stop-color="#7A35F0" />
+                  </lineargradient>
+                  <lineargradient
+                    id="paint3_linear_255_4561"
+                    x1="14.8763"
+                    y1="6.58301"
+                    x2="14.8763"
+                    y2="26.4216"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#7935EF" />
+                    <stop offset={1} stop-color="#6117E0" />
+                  </lineargradient>
+                </defs>
+              </svg>
+              <p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#111928]">
+                Nustutor
+              </p>
+            </div>
+            <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-right text-white">STEP 01/03</p>
+          </div>
+          <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
+            <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
+              <p className="flex-grow-0 flex-shrink-0 text-3xl font-bold text-left text-black">
+                Login into your Account
+              </p>
+            </div>
+            <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
+              <p className="flex-grow-0 flex-shrink-0 w-[411px] text-lg text-left text-[#8692a6]">
+                For the purpose of industry regulation, your details are required.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
+          <InputField
+            label="Email"
+            directive="Enter your email"
+            input="text"
+          />
+          <InputField
+            label="Password"
+            directive="Enter your password"
+            input="password"
+          />
+        </div>
+      </div>
+      <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer">
+        <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">Login</p>
+        <svg
+          width={25}
+          height={24}
+          viewBox="0 0 25 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="flex-grow-0 flex-shrink-0 w-6 h-6 relative"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M21.283 12.5341C21.3803 12.2789 21.4058 11.998 21.3561 11.7271C21.3064 11.4562 21.1839 11.2073 21.004 11.012L15.8608 5.42631C15.7422 5.29294 15.6003 5.18656 15.4434 5.11337C15.2866 5.04019 15.1178 5.00166 14.9471 5.00005C14.7764 4.99844 14.6071 5.03377 14.449 5.10399C14.291 5.1742 14.1475 5.27789 14.0267 5.409C13.906 5.54012 13.8105 5.69603 13.7459 5.86765C13.6812 6.03926 13.6487 6.22315 13.6502 6.40856C13.6517 6.59398 13.6871 6.77722 13.7545 6.94759C13.8219 7.11796 13.9199 7.27205 14.0427 7.40086L16.9923 10.6043H4.66665C4.32564 10.6043 3.99859 10.7514 3.75746 11.0133C3.51633 11.2752 3.38086 11.6303 3.38086 12.0007C3.38086 12.3711 3.51633 12.7262 3.75746 12.9881C3.99859 13.25 4.32564 13.3971 4.66665 13.3971H16.9923L14.044 16.5991C13.9212 16.728 13.8232 16.882 13.7558 17.0524C13.6884 17.2228 13.653 17.406 13.6515 17.5914C13.65 17.7769 13.6825 17.9607 13.7472 18.1324C13.8118 18.304 13.9073 18.4599 14.028 18.591C14.1488 18.7221 14.2923 18.8258 14.4503 18.896C14.6084 18.9662 14.7777 19.0016 14.9484 18.9999C15.1191 18.9983 15.2878 18.9598 15.4447 18.8866C15.6016 18.8134 15.7435 18.7071 15.8621 18.5737L21.0053 12.988C21.1244 12.858 21.2188 12.7038 21.283 12.5341Z"
+            fill="white"
+          />
+        </svg>
       </div>
     </div>
   </div>
-  <img
-    src="/onboarding.png"
-    className="w-[691px] h-[553px] absolute left-[63px] top-[118px] object-contain"
-  />
-  <div className="flex justify-start items-center absolute left-[1227px] top-9 gap-3">
-    <svg
-      width={30}
-      height={34}
-      viewBox="0 0 30 34"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="flex-grow-0 flex-shrink-0 w-[29.76px] h-[32.62px]"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <mask
-        id="mask0_162_726"
-        style={{ maskType: "alpha" }}
-        maskUnits="userSpaceOnUse"
-        x={0}
-        y={0}
-        width={30}
-        height={34}
-      >
-        <path
-          d="M12.0589 1.44621C13.8053 0.437935 15.9569 0.437934 17.7033 1.44621L26.94 6.77901C28.6864 7.78728 29.7622 9.65065 29.7622 11.6672V22.3328C29.7622 24.3494 28.6864 26.2127 26.94 27.221L17.7033 32.5538C15.9569 33.5621 13.8053 33.5621 12.0589 32.5538L2.8222 27.221C1.07582 26.2127 0 24.3494 0 22.3328V11.6672C0 9.65065 1.07582 7.78729 2.8222 6.77901L12.0589 1.44621Z"
-          fill="#C4C4C4"
-        />
-      </mask>
-      <g mask="url(#mask0_162_726)">
-        <path
-          d="M14.877 -0.46402L31.1888 8.95362L22.9339 13.3984L19.5242 11.5385L16.4244 11.8485L8.67499 9.0587L6.81512 11.5385L5.88519 12.7784L4.02533 11.5385L-1.43487 8.95362L14.877 -0.46402Z"
-          fill="url(#paint0_linear_162_726)"
-        />
-        <path
-          d="M-0.128662 9.08696L6.19923 12.1555L9.91896 21.1449L9.91896 21.4549L11.1589 23.0048L16.7385 27.3444L14.8805 35.0835L-0.128663 26.418L-0.128662 9.08696Z"
-          fill="url(#paint1_linear_162_726)"
-        />
-        <path
-          d="M19.8341 21.4544L23.8638 12.775L29.886 9.08883L29.886 26.4199L14.8769 35.0854L14.5645 27.344L19.8341 21.4544Z"
-          fill="url(#paint2_linear_162_726)"
-        />
-        <path
-          d="M14.8763 6.58273C12.3115 6.58273 9.9741 7.55621 8.21323 9.15381L9.6428 21.4615C10.0337 21.642 12.2759 22.3916 12.7065 22.3916H15.8062C16.3541 22.3916 20.1459 21.2238 20.1459 21.7716L19.8359 20.4696C19.8359 21.0175 19.3919 21.4615 18.844 21.4615H10.9086C10.3608 21.4615 9.91667 21.0175 9.91667 20.4696V15.6676C9.91667 15.237 9.82323 14.8116 9.6428 14.4205L8.21323 9.15381C6.61563 10.9146 4.95703 13.9372 4.95703 16.502C4.95703 21.9803 9.39799 26.4213 14.8763 26.4213C20.3546 26.4213 24.7956 21.9803 24.7956 16.502C24.7956 11.0237 20.3546 6.58273 14.8763 6.58273Z"
-          fill="url(#paint3_linear_162_726)"
-        />
-        <path
-          d="M13.0393 10.7229C13.2583 10.6384 13.4926 10.6052 13.7246 10.6259C13.9565 10.6466 14.18 10.7206 14.3781 10.8422C14.5761 10.9639 14.7436 11.1301 14.8678 11.3282C14.9921 11.5264 15.0697 11.7512 15.095 11.9858C15.2751 13.6757 14.8956 15.3867 14.016 16.8504C13.1364 18.314 11.8066 19.4474 10.2352 20.0727L9.1231 17.1973C10.0618 16.8234 10.8568 16.1474 11.3846 15.2744C11.9124 14.4014 12.1433 13.3804 12.0415 12.3701C12.0044 12.0252 12.0821 11.6758 12.2624 11.3774C12.4427 11.079 12.7152 10.8486 13.0367 10.7228L13.0393 10.7229Z"
-          fill="#9C5AFF"
-        />
-        <path
-          d="M13.0266 10.7276C12.6467 10.8789 12.3394 11.1761 12.1723 11.5538C12.0052 11.9315 11.9919 12.3587 12.1354 12.7416L15.3855 21.4085C15.5291 21.7913 15.8178 22.0984 16.1879 22.2621C16.5581 22.4259 16.9794 22.433 17.3594 22.2819V22.2819C17.5475 22.207 17.7199 22.0956 17.8665 21.9538C18.0131 21.8121 18.1312 21.6429 18.214 21.4558C18.2967 21.2688 18.3426 21.0676 18.3488 20.8637C18.3551 20.6599 18.3217 20.4574 18.2505 20.2678L15.0005 11.601C14.9294 11.4113 14.822 11.2383 14.6844 11.0918C14.5467 10.9452 14.3815 10.828 14.1982 10.7469C14.0149 10.6658 13.817 10.6224 13.616 10.619C13.415 10.6157 13.2147 10.6526 13.0266 10.7276Z"
-          fill="#9C5AFF"
-        />
-        <path
-          d="M17.3449 22.2842C17.126 22.3688 16.8918 22.402 16.6598 22.3814C16.4279 22.3608 16.2045 22.2868 16.0064 22.1652C15.8084 22.0436 15.6409 21.8774 15.5167 21.6794C15.3925 21.4813 15.3148 21.2565 15.2895 21.022C15.1096 19.3321 15.4891 17.621 16.3686 16.1573C17.2481 14.6936 18.5778 13.5601 20.1491 12.9345L21.2612 15.811C20.3225 16.1848 19.5275 16.8608 18.9997 17.7338C18.4719 18.6068 18.241 19.6278 18.3428 20.6381C18.3794 20.9832 18.3011 21.3325 18.1203 21.6307C17.9396 21.9289 17.6667 22.1589 17.3449 22.2842V22.2842Z"
-          fill="#9C5AFF"
-        />
-      </g>
-      <defs>
-        <lineargradient
-          id="paint0_linear_162_726"
-          x1="14.5646"
-          y1="0.999291"
-          x2="14.282"
-          y2="12.3216"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#4E00D3" />
-          <stop offset={1} stop-color="#7A36F0" />
-        </lineargradient>
-        <lineargradient
-          id="paint1_linear_162_726"
-          x1="14.8786"
-          y1="23.9347"
-          x2="5.90296"
-          y2="13.173"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#5508D8" />
-          <stop offset={1} stop-color="#7935EF" />
-        </lineargradient>
-        <lineargradient
-          id="paint2_linear_162_726"
-          x1="14.8744"
-          y1="25.1741"
-          x2="23.4474"
-          y2="13.715"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#5205D6" />
-          <stop offset={1} stop-color="#7A35F0" />
-        </lineargradient>
-        <lineargradient
-          id="paint3_linear_162_726"
-          x1="14.8763"
-          y1="6.58273"
-          x2="14.8763"
-          y2="26.4213"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#7935EF" />
-          <stop offset={1} stop-color="#6117E0" />
-        </lineargradient>
-      </defs>
-    </svg>
-    <p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#111928]">
-      Nustutor
-    </p>
-  </div>
-</div>
   )
 }
 

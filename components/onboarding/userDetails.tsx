@@ -1,105 +1,12 @@
-'use client'
-
 import React from 'react'
-import { useState } from 'react'
-import InputField from './inputField'
-import Dropdown from './dropdown'
-import { useRouter } from 'next/navigation';
+import Dropdown from './dropdown';
 
-const Signup = () => {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    Department: '',
-    Semester: '',
-    Degree: ''
-  });
+const UserDetails = () => {
 
-  const handleInputChange = (fieldName, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [fieldName]: value,
-    }));
-  };
-  
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState({
-    Department: '',
-    Semester: '',
-    Degree: '',
-  });
-
-  const openModal = () => {
-    setIsModalOpen(true);
-    // Initialize dropdown values when opening the modal
-    setSelectedOptions({
-      Department: formData.Department || '',
-      Semester: formData.Semester || '',
-      Degree: formData.Degree || '', 
-    });
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleDropdownSelect = (dropdownName, value) => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      [dropdownName]: value,
-    }));
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [dropdownName]: value,
-    }));
-  };
-
-
-    const handleSignup = async () => {
-      console.log('handleSignup function called');
-      try {
-        const formDataToSend = {
-          email: formData.email,
-          password: formData.password,
-          fullname: formData.fullName, // Assuming fullName is the user's first name
-          semester: formData.Semester,
-          degree: formData.Degree,
-          dept: formData.Department,
-          bio: '', // You can add bio if it's part of your form
-        };
-        console.log('formDataToSend:', formDataToSend);
-        // Make API call to the backend
-        const response = await fetch('http://localhost:4306/api/v1/signup ', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formDataToSend),
-        });
-    
-        // Handle the response from the API
-        if (response.ok) {
-          // Successful signup
-          const responseData = await response.json();
-          console.log('Signup successful:', responseData);
-          // redirect to home page
-          router.push('/home');
-        } else {
-          // Error during signup
-          const errorData = await response.json();
-          console.error('Error during signup:', errorData);
-        }
-      } catch (error) {
-        console.error('Error during signup:', error);
-      }
-  }
-
-  // console.log("FOO",formData);
+    const dropdownTitle = 'Select Option';
+    const dropdownOptions = ['SEECS', 'NBS', 'S3H', 'IESE', 'SMME', 'NICE', 'IGIS', 'ASAB'];
+    const dropdownOptions1 = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    const dropdownOptions2 = ['CS', 'SE', 'EE', 'BBA', 'ACF', 'ECO', 'PSY', 'ME'];
 
   return (
     <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
@@ -155,7 +62,7 @@ const Signup = () => {
               preserveAspectRatio="xMidYMid meet"
             >
               <mask
-                id="mask0_255_1636"
+                id="mask0_255_4629"
                 style={{ maskType: "alpha" }}
                 maskUnits="userSpaceOnUse"
                 x={0}
@@ -168,22 +75,22 @@ const Signup = () => {
                   fill="#C4C4C4"
                 />
               </mask>
-              <g mask="url(#mask0_255_1636)">
+              <g mask="url(#mask0_255_4629)">
                 <path
                   d="M14.877 -0.463867L31.1888 8.95377L22.9339 13.3985L19.5242 11.5387L16.4244 11.8486L8.67499 9.05885L6.81512 11.5387L5.88519 12.7786L4.02533 11.5387L-1.43487 8.95377L14.877 -0.463867Z"
-                  fill="url(#paint0_linear_255_1636)"
+                  fill="url(#paint0_linear_255_4629)"
                 />
                 <path
                   d="M-0.128906 9.08775L6.19899 12.1563L9.91871 21.1457L9.91871 21.4557L11.1586 23.0055L16.7382 27.3452L14.8802 35.0843L-0.128907 26.4188L-0.128906 9.08775Z"
-                  fill="url(#paint1_linear_255_1636)"
+                  fill="url(#paint1_linear_255_4629)"
                 />
                 <path
                   d="M19.8341 21.4552L23.8638 12.7759L29.886 9.08966L29.886 26.4207L14.8769 35.0862L14.5645 27.3448L19.8341 21.4552Z"
-                  fill="url(#paint2_linear_255_1636)"
+                  fill="url(#paint2_linear_255_4629)"
                 />
                 <path
                   d="M14.8763 6.58301C12.3115 6.58301 9.9741 7.55649 8.21323 9.15408L9.6428 21.4618C10.0337 21.6422 12.2759 22.3918 12.7065 22.3918H15.8062C16.3541 22.3918 20.1459 21.2241 20.1459 21.7719L19.8359 20.4699C19.8359 21.0177 19.3919 21.4618 18.844 21.4618H10.9086C10.3608 21.4618 9.91667 21.0177 9.91667 20.4699V15.6679C9.91667 15.2373 9.82323 14.8118 9.6428 14.4208L8.21323 9.15408C6.61563 10.9149 4.95703 13.9375 4.95703 16.5023C4.95703 21.9806 9.39799 26.4216 14.8763 26.4216C20.3546 26.4216 24.7956 21.9806 24.7956 16.5023C24.7956 11.024 20.3546 6.58301 14.8763 6.58301Z"
-                  fill="url(#paint3_linear_255_1636)"
+                  fill="url(#paint3_linear_255_4629)"
                 />
                 <path
                   d="M13.0393 10.7229C13.2583 10.6384 13.4926 10.6053 13.7246 10.6259C13.9565 10.6466 14.18 10.7206 14.3781 10.8423C14.5761 10.964 14.7436 11.1302 14.8678 11.3283C14.9921 11.5264 15.0697 11.7512 15.095 11.9858C15.2751 13.6757 14.8956 15.3867 14.016 16.8504C13.1364 18.314 11.8066 19.4474 10.2352 20.0727L9.1231 17.1973C10.0618 16.8235 10.8568 16.1475 11.3846 15.2745C11.9124 14.4015 12.1433 13.3804 12.0415 12.3702C12.0044 12.0252 12.0821 11.6758 12.2624 11.3774C12.4427 11.079 12.7152 10.8486 13.0367 10.7229L13.0393 10.7229Z"
@@ -200,7 +107,7 @@ const Signup = () => {
               </g>
               <defs>
                 <lineargradient
-                  id="paint0_linear_255_1636"
+                  id="paint0_linear_255_4629"
                   x1="14.5646"
                   y1="0.999443"
                   x2="14.282"
@@ -211,7 +118,7 @@ const Signup = () => {
                   <stop offset={1} stop-color="#7A36F0" />
                 </lineargradient>
                 <lineargradient
-                  id="paint1_linear_255_1636"
+                  id="paint1_linear_255_4629"
                   x1="14.8783"
                   y1="23.9355"
                   x2="5.90272"
@@ -222,7 +129,7 @@ const Signup = () => {
                   <stop offset={1} stop-color="#7935EF" />
                 </lineargradient>
                 <lineargradient
-                  id="paint2_linear_255_1636"
+                  id="paint2_linear_255_4629"
                   x1="14.8744"
                   y1="25.175"
                   x2="23.4474"
@@ -233,7 +140,7 @@ const Signup = () => {
                   <stop offset={1} stop-color="#7A35F0" />
                 </lineargradient>
                 <lineargradient
-                  id="paint3_linear_255_1636"
+                  id="paint3_linear_255_4629"
                   x1="14.8763"
                   y1="6.58301"
                   x2="14.8763"
@@ -250,13 +157,13 @@ const Signup = () => {
             </p>
           </div>
           <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-right text-[#bdbdbd]">
-            STEP 01/03
+            STEP 02/03
           </p>
         </div>
         <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
           <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
             <p className="flex-grow-0 flex-shrink-0 text-3xl font-bold text-left text-black">
-              Register Individual Account!
+              Tell us about yourself
             </p>
           </div>
           <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
@@ -266,41 +173,16 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <form>
-      <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
-        <InputField label={"Full Name"}
-              directive={"Enter your Full Name"}
-              input="text"
-              inputValue={formData.fullName} 
-              onChange={(e) => handleInputChange('fullName', e.target.value)}
-              />
-          <InputField
-            label="Email"
-            directive="Enter your Email"
-            input="email"
-            inputValue={formData.email}
-            onChange={(e) => handleInputChange('email', e.target.value)}
-          />
-          <InputField
-            label="Password"
-            directive="Enter your password"
-            input="password"
-            inputValue={formData.password}
-            onChange={(e) => handleInputChange('password', e.target.value)}
-          />
-          <InputField
-            label="Confirm Password"
-            directive="Re-enter your password"
-            input="password"
-            inputValue={formData.confirmPassword}
-            onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-          />
+      <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 p-4">
+      <Dropdown title={"Department"} options={dropdownOptions} />
+      <Dropdown title={"Semester"} options={dropdownOptions1} />
+      <Dropdown title={"Degree Program"} options={dropdownOptions2} />
       </div>
-      </form>
     </div>
-    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer"
-    onClick={openModal}>
-      <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">Signup</p>
+    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db]">
+      <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
+        Continue
+      </p>
       <svg
         width={25}
         height={24}
@@ -317,69 +199,8 @@ const Signup = () => {
       </svg>
     </div>
   </div>
-  
-{/* Modal */}
-{isModalOpen && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center">
-    <div className="absolute inset-0 bg-black opacity-50" onClick={closeModal}></div>
-    <div className="z-10 bg-white p-8 rounded-lg relative">
-      {/* Close button */}
-      <button
-        className="absolute top-4 right-4 text-gray-600 cursor-pointer"
-        onClick={closeModal}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-
-      {/* Your dropdown components */}
-      <Dropdown
-        title="Department"
-        options={['SEECS', 'SMME', 'S3H', 'NBS', 'SCME', 'IGIS', 'SADA']}
-        selectedOption={selectedOptions.Department}
-        onSelect={(value) => handleDropdownSelect('Department', value)}
-      />
-      <Dropdown
-        title="Semester"
-        options={['1', '2', '3', '4', '5', '6', '7', '8']}
-        selectedOption={selectedOptions.Semester}
-        onSelect={(value) => handleDropdownSelect('Semester', value)}
-      />
-      <Dropdown
-        title="Degree Program"
-        options={['CS', 'SE', 'EE']}
-        selectedOption={selectedOptions.Degree}
-        onSelect={(value) => handleDropdownSelect('Degree', value)}
-      />
-
-      {/* Sign Up button */}
-      <button
-  className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-  onClick={() => {
-    console.log('Sign Up button clicked'); // Add this line
-    handleSignup(); // Call your signup function here
-  }}
->
-  Sign Up
-</button>
-    </div>
-  </div>
-)}
-
 </div>
   )
 }
 
-export default Signup;
+export default UserDetails;
