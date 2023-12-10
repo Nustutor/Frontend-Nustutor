@@ -1,8 +1,17 @@
-import React from 'react'
+"use client"
 
+import React from 'react'
+import {useRouter} from 'next/navigation'
 const Logo = () => {
+
+  const router = useRouter();
+  const onClick = () => {
+    router.push('/')
+  }
+
   return (
-    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3 cursor-pointer">
+    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3 cursor-pointer"
+    onClick = {onClick}>
     <svg
       width={30}
       height={33}

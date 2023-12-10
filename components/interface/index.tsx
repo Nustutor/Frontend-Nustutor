@@ -2,7 +2,7 @@ import React from 'react'
 
 const Interface = () => {
   return (
-    <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 overflow-hidden gap-20 py-24 bg-gray-50">
+    <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 overflow-hidden gap-20 py-24 bg-gray-50" id ="features">
   <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[1280px] gap-16">
     <div className="flex flex-col justify-start items-start flex-grow gap-8">
       <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">

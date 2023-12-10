@@ -3,7 +3,7 @@ import Member from './member';
 
 const Team = () => {
   return (
-    <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0  overflow-hidden gap-2.5 pb-24 bg-white">
+    <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0  overflow-hidden gap-2.5 pb-24 bg-white" id = "aboutus">
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0  overflow-hidden gap-20 px-16 py-28 bg-[#f7f7f7]">
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[768px] gap-4">
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-6">
