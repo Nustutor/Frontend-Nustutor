@@ -27,7 +27,7 @@ const Course = () => {
           <p className="flex-grow-0 flex-shrink-0 text-base text-left text-black">Best Price</p>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-16">
+      <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-x-auto gap-16">
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1312px] gap-8">
             <CourseCard img="/courseImg.png" category="Business" title="Business Management" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
             <CourseCard img="/courseImg.png" category="Business" title="Business Management" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
