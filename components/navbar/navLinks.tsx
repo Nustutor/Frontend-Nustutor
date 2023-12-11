@@ -10,6 +10,7 @@ const Links = () => {
   }
 
   const featuresClick = () => {
+    router.push('/')
     const featuresSection = document.getElementById('features');
     if (featuresSection) {
       featuresSection.scrollIntoView({ behavior: 'smooth' });
@@ -17,6 +18,7 @@ const Links = () => {
   };
 
   const aboutClick = () => {
+    router.push('/')
     const aboutSection = document.getElementById('aboutus');
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
