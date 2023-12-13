@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import CourseCard from '../courses/courseCard';
 
 const CategoryCourses = () => {
 
@@ -26,16 +27,17 @@ const CategoryCourses = () => {
   }, [category]);
 
   return (
-    <div className="category-courses">
-      <h2>{`Courses for ${category}`}</h2>
-      <div className="courses-list">
-        {courses.map((course) => (
-          <div key={course.id} className="course">
-            <h3>{course.title}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
+    <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-x-auto gap-16">
+  <div className="flex flex-wrap justify-start items-start flex-grow-0 flex-shrink-0 max-w-[1312px] gap-8">
+    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+  </div>
+</div>
+
   );
 };
 
