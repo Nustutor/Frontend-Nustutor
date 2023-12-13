@@ -6,9 +6,10 @@ const Links = () => {
 
   const router = useRouter();
   const homeClick = () => {
-    router.push('/')
+    router.push('/home')
   }
 
+  
   const featuresClick = () => {
     router.push('/')
     const featuresSection = document.getElementById('features');
