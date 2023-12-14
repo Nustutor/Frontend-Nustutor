@@ -1,13 +1,22 @@
+"use client"
 import React from 'react'
+import {useRouter} from 'next/navigation'
 
 const Sidebar = () => {
+
+  const router = useRouter()
+  const homeClick = () => {
+    router.push('/')
+  }
+  
   return (
     <div
   className="flex flex-col justify-between items-center self-stretch flex-grow-0 flex-shrink-0 w-60 p-8 bg-white"
   style={{ boxShadow: "0px 14px 42px 0 rgba(8,15,52,0.06)" }}
 >
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[146px] gap-12">
-    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[146px] gap-[9px]">
+    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[146px] gap-[9px] cursor-pointer"
+    onClick = {homeClick}>
       <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
         <svg
           width={30}

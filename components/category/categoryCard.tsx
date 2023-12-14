@@ -1,8 +1,17 @@
+"use client"
 import React from 'react'
+import {useRouter} from 'next/navigation'
 
 const CategoryCard = ({CourseName,TutorNumber}) => {
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/courses/${CourseName}`)
+  }
   return (
-    <div className="flex justify-start items-center flex-grow gap-8 p-4 rounded-[5px] bg-[#f7f7f7]">
+    <div className="flex justify-start items-center flex-grow gap-8 p-4 rounded-[5px] bg-[#f7f7f7] cursor-pointer"
+    onClick = {handleClick}>
   <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-2.5 p-[34px] rounded-[5px] bg-white">
     <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2.5">
       <svg
