@@ -1,9 +1,59 @@
+'use client'
+
 import React from 'react'
-import Toggle from './toggle'
+import { useState } from 'react'
 import InputField from './inputField'
-import ProtectedField from './protectedField'
+import { useRouter } from 'next/navigation'
 
 const login = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [fieldName]: value,
+    }));
+  };
+
+
+    const handleLogin = async () => {
+      console.log('handleLogin function called');
+      try {
+        const formDataToSend = {
+          email: formData.email,
+          password: formData.password,
+        };
+        console.log('formDataToSend:', formDataToSend);
+        // Make API call to the backend
+        const response = await fetch('http://localhost:4306/api/v1/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formDataToSend),
+        });
+    
+        // Handle the response from the API
+        if (response.ok) {
+          // Successful signup
+          const responseData = await response.json();
+          console.log('Signup successful:', responseData);
+          // redirect to home page
+          router.push('/home')
+        } else {
+          // Error during signup
+          const errorData = await response.json();
+          console.error('Error during login:', errorData);
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+      }
+  }
+
   return (
     <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
     <div className="flex flex-col justify-start items-start absolute left-[45px] top-11 overflow-hidden gap-2.5 px-[19px] py-[75px] rounded-[32px] bg-[#1565d8]/90">
@@ -168,19 +218,24 @@ const login = () => {
           </div>
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
-          <InputField
+        <InputField
             label="Email"
-            directive="Enter your email"
-            input="text"
+            directive="Enter your Email"
+            input="email"
+            inputValue={formData.email}
+            onChange={(e) => handleInputChange('email', e.target.value)}
           />
           <InputField
             label="Password"
             directive="Enter your password"
             input="password"
+            inputValue={formData.password}
+            onChange={(e) => handleInputChange('password', e.target.value)}
           />
         </div>
       </div>
-      <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer">
+      <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer"
+      onClick={handleLogin}>
         <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">Login</p>
         <svg
           width={25}
