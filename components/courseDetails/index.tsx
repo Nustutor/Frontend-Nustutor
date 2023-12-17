@@ -5,12 +5,16 @@ import { usePathname } from 'next/navigation';
 
 const CoursePage = () => {
 
-  const title = decodeURIComponent(usePathname().split('/home/')[1]);
+  const url = decodeURIComponent(usePathname().split('/home/')[1]);
+  const parts = url.split('+')
+  const title = parts[0];
+  const category = parts[1];
+
 
   return (
     <CourseListing
       Level="UG"
-      Category="Computer Science"
+      Category={category}
       Title={title}
       CourseDescription="4 Credit Hour Course" 
       CourseHero={"/courseListing.png"}  />
