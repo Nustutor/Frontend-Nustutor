@@ -5,7 +5,7 @@ import TutorCard from './tutorCard';
 const CourseTutors = () => {
   return (
     <div className="flex justify-start items-start relative overflow-hidden gap-2.5 px-[280px] py-16 rounded-tl-[64px] rounded-tr-[64px] bg-[#808080]/[0.08]">
-  <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
+  <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16" id ="tutors">
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative gap-6">
         <p className="flex-grow-0 flex-shrink-0 w-[798px] text-5xl font-bold text-center text-black">
