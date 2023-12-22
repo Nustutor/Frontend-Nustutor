@@ -16,10 +16,13 @@ jobs:
       - run: ls
       - run: rm package-lock.json
 
-      - name: Install node js
+      - name: Install node js using nvm
         run: |
           sudo apt-get update
-          sudo apt-get install nodejs
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+          source ~/.bashrc
+          nvm install --lts
+          nvm use --lts
 
       - name: Check node version
         run: node -v
