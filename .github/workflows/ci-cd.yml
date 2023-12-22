@@ -18,12 +18,9 @@ jobs:
         with:
           node-version: 20.10.0
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Next.js App
+      - name: Install and Build
         run: |
-          cd ..
+          npm install
           npm run build
 
       - name: Copy Build to Server
