@@ -18,7 +18,7 @@ const TutorDashboard = () => {
         <QuickActions Content={undefined}/>
         <QuickActions Content={undefined}/>
     </div>
-    <Offers/>
+    <Offers OfferText={'Acrive Classes'}/>
     <RecentActivity/>
   </div>
   <div

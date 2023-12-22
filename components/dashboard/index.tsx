@@ -18,7 +18,7 @@ const StudentDashboard = () => {
         <QuickActions Content={undefined}/>
         <QuickActions Content={undefined}/>
     </div>
-    <Offers/>
+    <Offers OfferText={'Sent Offers'}/>
     <RecentActivity/>
   </div>
   <div

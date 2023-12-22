@@ -81,7 +81,13 @@ const login = () => {
       if (response.ok) {
         // Successful signup
         const responseData = await response.json();
+        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('userID', responseData.userID);
         console.log('Login successful:', responseData);
+        const getToken = () => localStorage.getItem('token');
+        const getuserID = () => localStorage.getItem('userID');
+        console.log('token:', getToken());
+        console.log('userID:', getuserID());
         // redirect to home page
         router.push('/home');
       } else {
