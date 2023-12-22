@@ -34,7 +34,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "." # Change this if your build output is in a different directory
+          source: ".next" # Change this if your build output is in a different directory
           target: ${{ secrets.PATH }}
 
       # - name: SSH into Server and Deploy
