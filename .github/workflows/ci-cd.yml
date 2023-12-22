@@ -20,11 +20,8 @@ jobs:
 
       - name: Install and Build
         run: |
-          pwd
-          ls
+          npm cache clean -f
           npm install
-          pwd
-          ls
           npm run build
 
       - name: Copy Build to Server
