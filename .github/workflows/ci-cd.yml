@@ -16,7 +16,7 @@ jobs:
       - run: ls
       - run: rm package-lock.json
 
-      - name: Install node js using nvm
+      - name: Install and Build
         run: |
           sudo apt-get update
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
@@ -25,12 +25,6 @@ jobs:
           source ~/.nvm/nvm.sh
           nvm install --lts
           nvm use --lts
-
-      - name: Check node version
-        run: node -v
-
-      - name: Install and Build
-        run: |
           npm install
           npm run build
 
