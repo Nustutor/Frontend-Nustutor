@@ -21,6 +21,7 @@ jobs:
       - name: Install and Build
         run: |
           npm cache clean -f
+          rm package-lock.json
           npm install
           npm run build
 
