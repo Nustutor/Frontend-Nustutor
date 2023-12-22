@@ -20,7 +20,11 @@ jobs:
 
       - name: Install and Build
         run: |
+          pwd
+          ls
           npm install
+          pwd
+          ls
           npm run build
 
       - name: Copy Build to Server
