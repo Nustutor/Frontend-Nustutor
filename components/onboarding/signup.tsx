@@ -5,6 +5,7 @@ import { useState } from 'react'
 import InputField from './inputField'
 import Dropdown from './dropdown'
 import { useRouter } from 'next/navigation';
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const Signup = () => {
   const router = useRouter();
@@ -74,7 +75,7 @@ const Signup = () => {
         };
         console.log('formDataToSend:', formDataToSend);
         // Make API call to the backend
-        const response = await fetch('http://localhost:4306/api/v1/signup ', {
+        const response = await fetch(`${endpoint}/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ const Signup = () => {
           const responseData = await response.json();
           console.log('Signup successful:', responseData);
           // redirect to home page
-          router.push('/home');
+          router.push('/verifyEmail');
         } else {
           // Error during signup
           const errorData = await response.json();
@@ -97,6 +98,10 @@ const Signup = () => {
       } catch (error) {
         console.error('Error during signup:', error);
       }
+  }
+
+  const backClick = () => {
+    router.push('/')
   }
 
   // console.log("FOO",formData);
@@ -125,7 +130,8 @@ const Signup = () => {
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-8">
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[169px]">
-          <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px]">
+          <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px] cursor-pointer"
+          onClick = {backClick}>
             <svg
               width={20}
               height={20}
@@ -271,15 +277,16 @@ const Signup = () => {
         <InputField label={"Full Name"}
               directive={"Enter your Full Name"}
               input="text"
-              inputValue={formData.fullName} 
-              onChange={(e) => handleInputChange('fullName', e.target.value)}
-              />
+              inputValue={formData.fullName}
+              onChange={(e) => handleInputChange('fullName', e.target.value)} 
+              required={'required'}              />
           <InputField
             label="Email"
             directive="Enter your Email"
             input="email"
             inputValue={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
+            required={'required'}
           />
           <InputField
             label="Password"
@@ -287,6 +294,7 @@ const Signup = () => {
             input="password"
             inputValue={formData.password}
             onChange={(e) => handleInputChange('password', e.target.value)}
+            required={'required'}
           />
           <InputField
             label="Confirm Password"
@@ -294,6 +302,7 @@ const Signup = () => {
             input="password"
             inputValue={formData.confirmPassword}
             onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+            required={'required'}
           />
       </div>
       </form>
