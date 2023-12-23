@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  distDir: '_next',
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
