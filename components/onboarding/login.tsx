@@ -1,9 +1,103 @@
-import React from 'react'
-import Toggle from './toggle'
-import InputField from './inputField'
-import ProtectedField from './protectedField'
+'use client'
 
+import React from 'react'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import InputField from './inputField'
+// require('dotenv').config();
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+console.log("FOO",process.env.NEXT_PUBLIC_BACKEND_ENDPOINT)
+console.log("FOOBAR",endpoint)
 const login = () => {
+
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = (fieldName, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [fieldName]: value,
+    }));
+  };
+
+//   function handleLogin() {
+//     console.log("FOO",process.env.BACKEND_ENDPOINT)
+// console.log("FOOBAR",endpoint)
+  
+//     // Assuming you have a user token or credentials to include in the request headers
+//     const headers = {
+//       // Add any headers you need, e.g., Authorization headers
+//       // 'Authorization': 'Bearer your_token',
+//       'Content-Type': 'application/json',
+//     };
+  
+//     // Make a GET request to the API endpoint with the provided headers
+//     fetch(`${endpoint}/test`, {
+//       method: 'GET',
+//       headers: headers,
+//       // You can add additional options here, like a request body for a POST request
+//       // body: JSON.stringify({ key: 'value' }),
+//     })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         return response.json(); // or response.text() if the response is not in JSON format
+//       })
+//       .then(data => {
+//         console.log('API Response:', data);
+  
+//         // Do something with the API response, e.g., update UI or perform additional actions
+//       })
+//       .catch(error => {
+//         console.error('Error:', error);
+  
+//         // Handle errors, e.g., display an error message to the user
+//       });
+//   }
+
+  const handleLogin = async () => {
+    console.log('handleLogin function called');
+    try {
+      const formDataToSend = {
+        email: formData.email,
+        password: formData.password, 
+      };
+      console.log('formDataToSend:', formDataToSend);
+      // Make API call to the backend
+      const response = await fetch(`${endpoint}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataToSend),
+      });
+  
+      // Handle the response from the API
+      if (response.ok) {
+        // Successful signup
+        const responseData = await response.json();
+        console.log('Login successful:', responseData);
+        // redirect to home page
+        router.push('/home');
+      } else {
+        // Error during signup
+        const errorData = await response.json();
+        console.error('Error during Login:', errorData);
+      }
+    } catch (error) {
+      console.error('Error during Login:', error);
+    }
+}
+
+const backClick = () => {
+  router.push('/')
+}
+
   return (
     <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
     <div className="flex flex-col justify-start items-start absolute left-[45px] top-11 overflow-hidden gap-2.5 px-[19px] py-[75px] rounded-[32px] bg-[#1565d8]/90">
@@ -28,7 +122,8 @@ const login = () => {
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-8">
         <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
           <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[169px]">
-            <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px]">
+            <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px] cursor-pointer"
+            onClick = {backClick}>
               <svg
                 width={20}
                 height={20}
@@ -168,19 +263,26 @@ const login = () => {
           </div>
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
-          <InputField
+        <InputField
             label="Email"
-            directive="Enter your email"
-            input="text"
+            directive="Enter your Email"
+            input="email"
+            inputValue={formData.email}
+            onChange={(e) => handleInputChange('email', e.target.value)}
+            required={'required'}
           />
           <InputField
             label="Password"
             directive="Enter your password"
             input="password"
+            inputValue={formData.password}
+            onChange={(e) => handleInputChange('password', e.target.value)}
+            required={'required'}
           />
         </div>
       </div>
-      <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer">
+      <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer"
+      onClick={handleLogin}>
         <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">Login</p>
         <svg
           width={25}
