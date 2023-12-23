@@ -27,6 +27,8 @@ jobs:
           nvm use --lts
           npm install
           npm run build
+          cd .next
+          pwd
 
       - name: Copy Build to Server
         uses: appleboy/scp-action@v0.1.4
@@ -34,7 +36,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "./.next/" # Change this if your build output is in a different directory
+          source: "./.next/*" # Change this if your build output is in a different directory
           target: ${{ secrets.PATH }}
 
       # - name: SSH into Server and Deploy
