@@ -27,8 +27,6 @@ jobs:
           nvm use --lts
           npm install
           npm run build
-          cd .next
-          pwd
 
       - name: Copy Build to Server
         uses: appleboy/scp-action@v0.1.4
