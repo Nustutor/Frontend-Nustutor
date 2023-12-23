@@ -8,8 +8,7 @@ export default function Home() {
     return (
       <div className="flex flex-col justify-start bg-white">  
     <HeroNavbar/>
-    <CoursePage/>
-    <CourseTutors showCTA = {true}/>
+    <CourseTutors showCTA = {false}/>
     <Footer/>
       </div>
     )
