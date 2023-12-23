@@ -8,7 +8,7 @@ const CourseCard = ({img,category,title,description}) => {
   const router = useRouter();
 
   const handleEnrollClick = () => {
-    router.push('/onboarding/signup');
+    router.push(`/home/${title}+${category}`);
   };
 
   return (
