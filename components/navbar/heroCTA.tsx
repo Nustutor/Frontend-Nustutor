@@ -12,11 +12,12 @@ const HeroCTA = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`${endpoint}/user/${uuid}`, {
+      const response = await fetch(`${endpoint}/user`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
+          'uuid': `${uuid}`,
           // Include any additional headers if needed
         },
       });
@@ -24,7 +25,8 @@ const HeroCTA = () => {
       if (response.ok) {
         const userData = await response.json();
         // Assuming you have a user ID in the response, use it in the route
-        const userId = userData.results[0].uuid;
+        const userId = userData.results[0];
+        console.log('FOO',userId)
         router.push(`/dashboard/${userId}`);
       } else {
         console.error('Error fetching user data:', response.statusText);
