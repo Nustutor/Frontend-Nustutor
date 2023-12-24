@@ -2,14 +2,66 @@
 
 import React from 'react'
 import { useRouter } from 'next/navigation';
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const HeroCTA = () => {
+  const uuid = localStorage.getItem('userID');
+  const token = localStorage.getItem('token');
   const router = useRouter();
-  const handleStudent = () => {
-    router.push('/dashboard/[id]')
+  const handleStudent = async () => {
+    const token = localStorage.getItem('token');
+
+    try {
+      const response = await fetch(`${endpoint}/user/${uuid}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          // Include any additional headers if needed
+        },
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        // Assuming you have a user ID in the response, use it in the route
+        const userId = userData.results[0].uuid;
+        router.push(`/dashboard/${userId}`);
+      } else {
+        console.error('Error fetching user data:', response.statusText);
+        // If there's an error, you can handle it accordingly, e.g., show an error message
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      // If there's an unexpected error, you can handle it accordingly, e.g., show an error message
+    }
   }
-  const handleTutor = () => {
-    router.push('/tutor/[id]')
+  const handleTutor = async () => {
+    try {
+      const response = await fetch(`${endpoint}/tutor/tutorview/gettutor/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'uuid': `${uuid}`,
+          // Include any additional headers if needed
+        },
+      });
+
+      if (response.ok) {
+        const tutorAccountData = await response.json();
+        // Assuming you have a tutor ID in the response, use it in the route
+        const tutorId = tutorAccountData[0].tuid;
+        router.push(`/tutor/${tutorId}`);
+      } else {
+        console.error('Error fetching tutor account data:', response.statusText);
+        // If there's an error, route to /tutor
+        router.push('/tutor');
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      // If there's an unexpected error, route to /tutor
+      router.push('/tutor');
+    }
   }
   return (
     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
