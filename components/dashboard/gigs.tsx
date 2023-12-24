@@ -1,8 +1,14 @@
+'use client'
+
 import React from 'react'
 import TutorCard from '../courseDetails/tutorCard';
-import { Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 const Offers = ({OfferText}: {OfferText: string}) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push('/tutor/[id]/addClass');
+  }
   return (
     <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5">
   <div className="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0 relative">
@@ -10,7 +16,8 @@ const Offers = ({OfferText}: {OfferText: string}) => {
       {OfferText}
     </p>
     <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 gap-3">
-    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-3 py-2 rounded-lg bg-[#5508d8] cursor-pointer">
+    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-3 py-2 rounded-lg bg-[#5508d8] cursor-pointer"
+    onClick={handleClick}>
           <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-white">
             Add Class
           </p>
