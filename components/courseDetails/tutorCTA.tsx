@@ -4,9 +4,8 @@ import {usePathname, useRouter} from 'next/navigation'
 
 const TutorCTA = ({showButton}) => {
   const router = useRouter();
-
+  const pathname = usePathname();
   const handleClick = () => {
-    const {pathname} = router;
     router.push(pathname+'/viewall')
   }
   return (
