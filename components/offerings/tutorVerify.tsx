@@ -1,6 +1,53 @@
+'use client'
+
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 const TutorVerify = () => {
+  const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+  const router = useRouter();
+
+  const handleClick = async () => {
+    const uuid = localStorage.getItem('userID');
+    const token = localStorage.getItem('token');
+    try {
+      console.log(`${uuid}`)
+      console.log(`Bearer ${token}`)
+      // Get stored uid and token from localStorage
+
+      // Check if uid and token are available
+      if (!uuid || !token) {
+        console.error('Missing uid or token');
+        return;
+      }
+
+      // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint for tutor signup
+
+      // Make the POST request
+      const response = await fetch(`${endpoint}/tutor/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'uuid': `${uuid}`,
+        },
+      });
+
+      // Check if the request was successful (status code 2xx)
+      if (response.ok) {
+        console.log('Tutor account created successfully');
+        // Redirect to the tutor page or handle the success as needed
+        router.push('/tutor/[id]');
+      } else {
+        console.error('Error creating tutor account:', response.statusText);
+        // Handle the error as needed
+      }
+    } catch (error) {
+      console.error('Error creating tutor account:', error.message);
+      // Handle the error as needed
+    }
+  };
+
   return (
     <div>
   <div className="flex flex-col justify-start items-center absolute left-0 top-[89px] gap-16 pb-16">
@@ -116,7 +163,8 @@ const TutorVerify = () => {
         </p>
       </div>
     </div>
-    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-6 py-3.5 rounded-lg bg-[#17c817]">
+    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-6 py-3.5 rounded-lg bg-[#17c817] cursor-pointer"
+    onClick={handleClick}>
       <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
         Start Tutoring
       </p>

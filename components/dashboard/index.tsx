@@ -6,7 +6,7 @@ import QuickActions from './quickActions'
 import Offers from './gigs'
 import RecentActivity from './recentActivity'
 
-const StudentDashboard = () => {
+const StudentDashboard = ({Username}) => {
   return (
     <div className="flex justify-start items-center  h-[1514px] gap-8 bg-white">
         <Sidebar/>
@@ -18,7 +18,7 @@ const StudentDashboard = () => {
         <QuickActions Content={undefined}/>
         <QuickActions Content={undefined}/>
     </div>
-    <Offers/>
+    <Offers OfferText={'Sent Offers'}/>
     <RecentActivity/>
   </div>
   <div
@@ -79,7 +79,7 @@ const StudentDashboard = () => {
       </div>
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[168px] text-base font-medium text-center capitalize text-[#202020]">
-          good Morning Student
+          good Morning {Username}
         </p>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[168px] text-xs font-medium text-center capitalize text-[#7e7e7e]">
           continue your journey and achieve Your Target

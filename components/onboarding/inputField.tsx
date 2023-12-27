@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InputField = ({label,directive,input,inputValue,onChange,required}) => {
+const InputField = ({label,directive,input,inputValue,onChange}) => {
   return (
     <div className="w-[435px] h-[90px]">
       <label htmlFor="input-group-1" className="block mb-2 text-sm font-medium text-gray-900">{label}</label>
@@ -11,7 +11,7 @@ const InputField = ({label,directive,input,inputValue,onChange,required}) => {
         <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
     </svg>
   </div>
-  <input type={input} id="input-group-1" required={required} value={inputValue} onChange={onChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={directive}/>
+  <input type={input} id="input-group-1" required value={inputValue} onChange={onChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={directive}/>
 </div>
   </div>
   )

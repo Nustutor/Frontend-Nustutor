@@ -4,12 +4,13 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import InputField from './inputField'
+import Loader from '../loader'
 // require('dotenv').config();
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 console.log("FOO",process.env.NEXT_PUBLIC_BACKEND_ENDPOINT)
 console.log("FOOBAR",endpoint)
 const login = () => {
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState({
 
@@ -62,6 +63,7 @@ const login = () => {
 
   const handleLogin = async () => {
     console.log('handleLogin function called');
+    setLoading(true);
     try {
       const formDataToSend = {
         email: formData.email,
@@ -77,11 +79,21 @@ const login = () => {
         body: JSON.stringify(formDataToSend),
       });
   
+      if (!formData.email || !formData.password) {
+        console.log('error: Email and password are required')
+      }
+      else {
       // Handle the response from the API
       if (response.ok) {
         // Successful signup
         const responseData = await response.json();
+        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('userID', responseData.userID);
         console.log('Login successful:', responseData);
+        const getToken = () => localStorage.getItem('token');
+        const getuserID = () => localStorage.getItem('userID');
+        console.log('token:', getToken());
+        console.log('userID:', getuserID());
         // redirect to home page
         router.push('/home');
       } else {
@@ -89,9 +101,13 @@ const login = () => {
         const errorData = await response.json();
         console.error('Error during Login:', errorData);
       }
+    }
     } catch (error) {
       console.error('Error during Login:', error);
     }
+    setTimeout(() => {
+      window.location.href = '/home';
+    }, 2000);
 }
 
 const backClick = () => {
@@ -262,6 +278,7 @@ const backClick = () => {
             </div>
           </div>
         </div>
+        <form onSubmit={handleLogin}>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
         <InputField
             label="Email"
@@ -269,7 +286,6 @@ const backClick = () => {
             input="email"
             inputValue={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
-            required={'required'}
           />
           <InputField
             label="Password"
@@ -277,10 +293,12 @@ const backClick = () => {
             input="password"
             inputValue={formData.password}
             onChange={(e) => handleInputChange('password', e.target.value)}
-            required={'required'}
           />
         </div>
+        </form>
       </div>
+      <div>
+      {loading && <Loader LoaderText={'Logging in'} />} {/* Render the Loader component when loading is true */}
       <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer"
       onClick={handleLogin}>
         <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">Login</p>
@@ -298,6 +316,7 @@ const backClick = () => {
             fill="white"
           />
         </svg>
+      </div>
       </div>
     </div>
   </div>
