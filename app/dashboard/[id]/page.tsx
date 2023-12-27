@@ -4,7 +4,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <StudentDashboard/>
+      <StudentDashboard Username={undefined}/>
     </div>
   )
 }

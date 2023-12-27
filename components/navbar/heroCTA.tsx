@@ -5,12 +5,15 @@ import { useRouter } from 'next/navigation';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const HeroCTA = () => {
-  const uuid = localStorage.getItem('userID');
-  const token = localStorage.getItem('token');
   const router = useRouter();
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
   const handleStudent = async () => {
-    const token = localStorage.getItem('token');
-
+    console.log(uuid)
+    console.log('FOO',token)
     try {
       const response = await fetch(`${endpoint}/user`, {
         method: 'GET',
@@ -25,7 +28,8 @@ const HeroCTA = () => {
       if (response.ok) {
         const userData = await response.json();
         // Assuming you have a user ID in the response, use it in the route
-        const userId = userData.results[0];
+        console.log(userData)
+        const userId = userData.results[0].uuid;
         console.log('FOO',userId)
         router.push(`/dashboard/${userId}`);
       } else {

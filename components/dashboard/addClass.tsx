@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import TimePicker from './TimePicker';
+import { Input } from 'postcss';
 
 const AddClass = () => {
   const [selectedOptions, setSelectedOptions] = useState({
@@ -84,10 +85,11 @@ const AddClass = () => {
     input={'number'} 
     inputValue={formData.rate} 
     onChange={(e) => handleInputChange('rate', e.target.value)} />
-    <TimePicker label={'Select available time slots for your class'} 
-    input={'text'} 
-    inputValue={'formData.availableTimeslots'} 
-    onChange={(e) => handleInputChange('availableTimeslots', e.target.value)}/>
+    <InputField label={'Available Timeslots'} 
+    directive={'Enter your available timeslots'} 
+    input={'time'} 
+    inputValue={formData.availableTimeslots} 
+    onChange={(e) => handleInputChange('availableTimeslots', e.target.value)} />
     <Dropdown
         title="Do you wish to have multuple students"
         options={['Yes', 'No']}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserPanel = () => {
+const UserPanel = ({Username}) => {
   return (
     <div
   className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-9 px-6 py-8 bg-white"
@@ -60,7 +60,7 @@ const UserPanel = () => {
     </div>
     <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
       <p className="self-stretch flex-grow-0 flex-shrink-0 w-[168px] text-base font-medium text-center capitalize text-[#202020]">
-        good Morning Student
+        good Morning {Username}
       </p>
       <p className="self-stretch flex-grow-0 flex-shrink-0 w-[168px] text-xs font-medium text-center capitalize text-[#7e7e7e]">
         continue your journey and achieve Your Target
