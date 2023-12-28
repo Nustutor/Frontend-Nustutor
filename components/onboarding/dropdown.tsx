@@ -46,7 +46,7 @@ const Dropdown = ({ title, options, onSelect, selectedOption }) => {
           id="dropdown-menu"
           className={`${
             isOpen ? 'z-10' : 'hidden'
-          } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1`}
+          } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 dropdown-options`}
         >
           {/* Search input */}
           <input

@@ -397,6 +397,7 @@ const Signup = () => {
         options={degrees.map((degree) => degree.degree)}
         selectedOption={selectedOptions.Degree}
         onSelect={(value) => handleDropdownSelect('Degree', value)}
+        // className_="dropdown-options"
       />
 
       {/* Sign Up button */}
