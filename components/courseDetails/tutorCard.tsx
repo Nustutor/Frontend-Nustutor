@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TutorCard = ({OfferingHero,TutorPfp,Category,OfferingTitle,TutorName,TutorStatus,OfferingRate}) => {
+const TutorCard = ({OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,OfferingRate}) => {
   return (
     <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
@@ -15,11 +15,11 @@ const TutorCard = ({OfferingHero,TutorPfp,Category,OfferingTitle,TutorName,Tutor
         />
         <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 h-[15px] relative gap-2.5 p-3 rounded-lg bg-[#702dff]/20">
           <p className="flex-grow-0 flex-shrink-0 text-[8px] text-left uppercase text-[#702dff]">
-            {Category}
+            {Suid}
           </p>
         </div>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[856px] text-sm font-medium text-left capitalize text-[#202020]">
-            {OfferingTitle}
+            {Title}
         </p>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[856px] text-sm font-semibold text-left capitalize text-[#202020]/80">
         Starts from PKR {OfferingRate}
