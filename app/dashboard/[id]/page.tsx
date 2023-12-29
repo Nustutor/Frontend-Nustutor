@@ -1,6 +1,7 @@
 'use client'
 import StudentDashboard from '@/components/dashboard'
 import Loader from '@/components/loader'
+import HeroNavbar from '@/components/navbar/heroNav'
 import React, { useEffect, useState } from 'react'
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
@@ -54,6 +55,7 @@ if (userFullName === null) {
 }
   return (
     <div>
+      <HeroNavbar/>
       <StudentDashboard Username={userFullName}/>
     </div>
   )
