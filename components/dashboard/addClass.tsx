@@ -12,39 +12,6 @@ import TimePicker from './TimePicker';
 import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-const universitySubjects = [
-  'b8d66ceb-9ad5-11ee-949d-127638f32eff',
-  'Physics',
-  'Chemistry',
-  'Biology',
-  'Computer Science',
-  'Engineering (Mechanical, Electrical, Civil, etc.)',
-  'Economics',
-  'Business Administration',
-  'Finance',
-  'Marketing',
-  'Accounting',
-  'Psychology',
-  'Sociology',
-  'Political Science',
-  'History',
-  'Literature',
-  'Philosophy',
-  'Environmental Science',
-  'Geology',
-  'Astronomy',
-  'Anthropology',
-  'Linguistics',
-  'Art History',
-  'Music',
-  'Film Studies',
-  'Education',
-  'Health Sciences',
-  'Nursing',
-  'Medicine',
-  'Law'
-];
-
 const AddClass = () => {
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
