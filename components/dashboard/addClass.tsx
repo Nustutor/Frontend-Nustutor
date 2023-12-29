@@ -12,38 +12,6 @@ import TimePicker from './TimePicker';
 import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-const universitySubjects = [
-  'b8d66ceb-9ad5-11ee-949d-127638f32eff',
-  'Physics',
-  'Chemistry',
-  'Biology',
-  'Computer Science',
-  'Engineering (Mechanical, Electrical, Civil, etc.)',
-  'Economics',
-  'Business Administration',
-  'Finance',
-  'Marketing',
-  'Accounting',
-  'Psychology',
-  'Sociology',
-  'Political Science',
-  'History',
-  'Literature',
-  'Philosophy',
-  'Environmental Science',
-  'Geology',
-  'Astronomy',
-  'Anthropology',
-  'Linguistics',
-  'Art History',
-  'Music',
-  'Film Studies',
-  'Education',
-  'Health Sciences',
-  'Nursing',
-  'Medicine',
-  'Law'
-];
 
 const AddClass = () => {
   let uuid: string | null, token: string | null;
@@ -91,11 +59,12 @@ const AddClass = () => {
   };
 
   const [subjects, setSubjects] = useState([]);
+  const [namesArray, setNamesArray] = useState([]);
 
   useEffect(() => {
     const SubjectData = async () => {
       try {
-        const response = await fetch(`${endpoint}/subject`, {
+        const response = await fetch(`${endpoint}/subject/subject_names`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -106,9 +75,11 @@ const AddClass = () => {
         });// Replace with the actual endpoint
         if (response.ok) {
           const data = await response.json();
+          console.log("data here", data);
           // Assuming the API response structure is { results: [...] }
-          setSubjects(data.results[0].suid);
-          console.log("Subjects are",data.results[0].suid)
+          const namesArray = data.results.map(item => item.name);
+          setNamesArray(namesArray)
+          console.log("Subjects are",namesArray)
         } else {
           console.error('Error fetching subjects:', response.statusText);
         }
@@ -118,6 +89,8 @@ const AddClass = () => {
     };
 
     SubjectData();
+
+
   }, []); 
 
 
@@ -180,8 +153,8 @@ const AddClass = () => {
     <div className='flex flex-col flex-grow-0 flex-shrink-0 '>
       <form>
     <Dropdown
-        title="Choose the most relevant degree to your class"
-        options={universitySubjects}
+        title="Choose the most relevant subject to your class"
+        options={namesArray}
         selectedOption={selectedOptions.suid}
         onSelect={(value) => handleDropdownSelect('suid', value)}
       />

@@ -75,7 +75,7 @@ const Course = () => {
     };
     
     // Call the function with the degree
-    getSubjectsByDegree("BS COMPUTER SCIENCE");
+    getSubjectsByDegree("BACHELOR OF SOFTWARE ENGINEERING ");
 
   }, []);
 
