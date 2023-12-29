@@ -1,13 +1,39 @@
 'use client'
 
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import InputField from './inputField'
 import Dropdown from './dropdown'
 import { useRouter } from 'next/navigation';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const Signup = () => {
+
+  const [degrees, setDegrees] = useState([]);
+
+  useEffect(() => {
+
+  const getAllDegrees = async () => {
+    const response = await fetch(`${endpoint}/subject/degrees/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });  
+  
+    if (response.ok) {
+      const degrees = await response.json();
+      console.log("degreeFOO",degrees);
+      setDegrees(degrees);
+      return degrees;
+    } else {
+      console.error("No degree found");
+    }
+  };
+  
+  getAllDegrees();
+  }, []);
+
   const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: '',
@@ -368,9 +394,10 @@ const Signup = () => {
       />
       <Dropdown
         title="Degree Program"
-        options={['CS', 'SE', 'EE']}
+        options={degrees.map((degree) => degree.degree)}
         selectedOption={selectedOptions.Degree}
         onSelect={(value) => handleDropdownSelect('Degree', value)}
+        // className_="dropdown-options"
       />
 
       {/* Sign Up button */}

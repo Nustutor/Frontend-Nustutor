@@ -1,7 +1,13 @@
 import React from 'react'
 import Dropdown from './dropdown';
 
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
+
+
 const UserDetails = () => {
+
+  
 
     const dropdownTitle = 'Select Option';
     const dropdownOptions = ['SEECS', 'NBS', 'S3H', 'IESE', 'SMME', 'NICE', 'IGIS', 'ASAB'];

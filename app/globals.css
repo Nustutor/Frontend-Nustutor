@@ -73,3 +73,8 @@ body {
       transform: translate(24px, 0);
   }
 }
+
+.dropdown-options {
+  max-height: 200px;
+  overflow-y: auto;
+}
