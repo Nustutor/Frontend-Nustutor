@@ -12,6 +12,7 @@ import TimePicker from './TimePicker';
 import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
+
 const AddClass = () => {
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
