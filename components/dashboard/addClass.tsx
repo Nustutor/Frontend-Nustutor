@@ -91,11 +91,12 @@ const AddClass = () => {
   };
 
   const [subjects, setSubjects] = useState([]);
+  const [namesArray, setNamesArray] = useState([]);
 
   useEffect(() => {
     const SubjectData = async () => {
       try {
-        const response = await fetch(`${endpoint}/subject`, {
+        const response = await fetch(`${endpoint}/subject/subject_names`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -106,9 +107,11 @@ const AddClass = () => {
         });// Replace with the actual endpoint
         if (response.ok) {
           const data = await response.json();
+          console.log("data here", data);
           // Assuming the API response structure is { results: [...] }
-          setSubjects(data.results[0].suid);
-          console.log("Subjects are",data.results[0].suid)
+          const namesArray = data.results.map(item => item.name);
+          setNamesArray(namesArray)
+          console.log("Subjects are",namesArray)
         } else {
           console.error('Error fetching subjects:', response.statusText);
         }
@@ -118,6 +121,8 @@ const AddClass = () => {
     };
 
     SubjectData();
+
+
   }, []); 
 
 
@@ -181,7 +186,7 @@ const AddClass = () => {
       <form>
     <Dropdown
         title="Choose the most relevant subject to your class"
-        options={universitySubjects}
+        options={namesArray}
         selectedOption={selectedOptions.suid}
         onSelect={(value) => handleDropdownSelect('suid', value)}
       />
