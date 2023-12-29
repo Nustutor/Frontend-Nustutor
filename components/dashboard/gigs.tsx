@@ -4,10 +4,12 @@ import React from 'react'
 import TutorCard from '../courseDetails/tutorCard';
 import { useRouter } from 'next/navigation';
 
-const Offers = ({OfferText}: {OfferText: string}) => {
+const Offers = ({OfferText}: {OfferText: string}, url: string) => { 
+  let tuid = localStorage.getItem('tuid');
+  console.log(tuid)
   const router = useRouter();
-  const handleClick = () => {
-    router.push('/tutor/[id]/addClass');
+  const handleClick = async () => {
+    router.push(`/tutor/${tuid}/addClass`);
   }
   return (
     <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5">
@@ -24,9 +26,9 @@ const Offers = ({OfferText}: {OfferText: string}) => {
         </div>
     </div>
   </div>
-  <TutorCard OfferingHero={'/cardHero.png'} TutorPfp={undefined} Category={undefined} OfferingTitle={undefined} TutorName={undefined} TutorStatus={undefined} OfferingRate={undefined}/>
-  <TutorCard OfferingHero={'/cardHero.png'} TutorPfp={undefined} Category={undefined} OfferingTitle={undefined} TutorName={undefined} TutorStatus={undefined} OfferingRate={undefined}/>
-  <TutorCard OfferingHero={'/cardHero.png'} TutorPfp={undefined} Category={undefined} OfferingTitle={undefined} TutorName={undefined} TutorStatus={undefined} OfferingRate={undefined}/>
+  <TutorCard OfferingHero={'/cardHero.png'} TutorPfp={undefined} Suid={undefined} Title={undefined} TutorName={undefined} TutorStatus={undefined} OfferingRate={undefined}/>
+  <TutorCard OfferingHero={'/cardHero.png'} TutorPfp={undefined} Suid={undefined} Title={undefined} TutorName={undefined} TutorStatus={undefined} OfferingRate={undefined}/>
+  <TutorCard OfferingHero={'/cardHero.png'} TutorPfp={undefined} Suid={undefined} Title={undefined} TutorName={undefined} TutorStatus={undefined} OfferingRate={undefined}/>
 </div>
   )
 }

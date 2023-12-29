@@ -31,6 +31,7 @@ const HeroCTA = () => {
         console.log(userData)
         const userId = userData.results[0].uuid;
         console.log('FOO',userId)
+        console.log(userData)
         router.push(`/dashboard/${userId}`);
       } else {
         console.error('Error fetching user data:', response.statusText);
@@ -57,6 +58,8 @@ const HeroCTA = () => {
         const tutorAccountData = await response.json();
         // Assuming you have a tutor ID in the response, use it in the route
         const tutorId = tutorAccountData[0].tuid;
+        localStorage.setItem('tuid', tutorAccountData[0].tuid);
+        console.log('tutor id is',localStorage.getItem('tuid'));
         router.push(`/tutor/${tutorId}`);
       } else {
         console.error('Error fetching tutor account data:', response.statusText);

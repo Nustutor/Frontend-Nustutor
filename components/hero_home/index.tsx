@@ -1,7 +1,8 @@
 import React from 'react'
 import Searchbar from './searchbar';
 
-const Hero = () => {
+const Hero = ({Username}: {Username: any}) => {
+  
   return (
     <div className="flex flex-col justify-start items-center relative gap-16 pb-16">
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 px-[352px] py-16 bg-white">
@@ -114,7 +115,7 @@ const Hero = () => {
         </span>
         <br />
         <span className="self-stretch flex-grow-0 flex-shrink-0 w-[736px] text-6xl font-black text-center text-[#111928]">
-          Loren
+          {Username}
         </span>
       </p>
       <p className="self-stretch flex-grow-0 flex-shrink-0 w-[736px] text-xl text-left text-gray-500">

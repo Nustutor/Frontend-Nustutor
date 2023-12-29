@@ -10,8 +10,47 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import TimePicker from './TimePicker';
 import { Input } from 'postcss';
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
+const universitySubjects = [
+  'b8d66ceb-9ad5-11ee-949d-127638f32eff',
+  'Physics',
+  'Chemistry',
+  'Biology',
+  'Computer Science',
+  'Engineering (Mechanical, Electrical, Civil, etc.)',
+  'Economics',
+  'Business Administration',
+  'Finance',
+  'Marketing',
+  'Accounting',
+  'Psychology',
+  'Sociology',
+  'Political Science',
+  'History',
+  'Literature',
+  'Philosophy',
+  'Environmental Science',
+  'Geology',
+  'Astronomy',
+  'Anthropology',
+  'Linguistics',
+  'Art History',
+  'Music',
+  'Film Studies',
+  'Education',
+  'Health Sciences',
+  'Nursing',
+  'Medicine',
+  'Law'
+];
 
 const AddClass = () => {
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
   const [selectedOptions, setSelectedOptions] = useState({
     suid: '',
     multipuleStudents: '',
@@ -51,6 +90,75 @@ const AddClass = () => {
     }));
   };
 
+  const [subjects, setSubjects] = useState([]);
+
+  useEffect(() => {
+    const SubjectData = async () => {
+      try {
+        const response = await fetch(`${endpoint}/subject`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers if needed
+          },
+        });// Replace with the actual endpoint
+        if (response.ok) {
+          const data = await response.json();
+          // Assuming the API response structure is { results: [...] }
+          setSubjects(data.results[0].suid);
+          console.log("Subjects are",data.results[0].suid)
+        } else {
+          console.error('Error fetching subjects:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Unexpected error:', error);
+      }
+    };
+
+    SubjectData();
+  }, []); 
+
+
+  const handleAddClass = async () => {
+    const { suid, title, description, rate, multipleStudents, availableTimeslots } = formData;
+    let tuid = localStorage.getItem('tuid'); // Replace with the actual tuid
+
+    try {
+      const response = await fetch(`${endpoint}/class/addclass/${tuid}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'uuid': `${uuid}`,
+          // Add any other headers if needed
+        },
+        body: JSON.stringify({
+          suid,
+          title,
+          description,
+          rate,
+          multipleStudents,
+          availableTimeslots: availableTimeslots.split(',').map(Number), // Assuming timeslots are comma-separated integers
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Class added successfully');
+        // Handle success, e.g., show a success message or redirect
+      } else {
+        console.log('time slot is',availableTimeslots.split(',').map(Number));
+        const errorData = await response.json();
+        console.error('Error adding class:', errorData.message);
+        // Handle error, e.g., show an error message to the user
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      // Handle unexpected errors
+    }
+  };
+
   console.log(formData)
 
   return (
@@ -61,12 +169,19 @@ const AddClass = () => {
     <p className="flex-grow-0 flex-shrink-0 text-5xl font-bold text-center text-black">
       Add a Class
     </p>
+    {/* <ul>
+        {subjects.map((subject) => (
+          <li key={subject.suid}>
+            {subject.name} - {subject.code} - {subject.degree}
+          </li>
+        ))}
+      </ul> */}
     <div className='p-4'/>
     <div className='flex flex-col flex-grow-0 flex-shrink-0 '>
       <form>
     <Dropdown
         title="Choose the most relevant subject to your class"
-        options={['SEECS', 'SMME', 'S3H', 'NBS', 'SCME', 'IGIS', 'SADA']}
+        options={universitySubjects}
         selectedOption={selectedOptions.suid}
         onSelect={(value) => handleDropdownSelect('suid', value)}
       />
@@ -87,7 +202,7 @@ const AddClass = () => {
     onChange={(e) => handleInputChange('rate', e.target.value)} />
     <InputField label={'Available Timeslots'} 
     directive={'Enter your available timeslots'} 
-    input={'time'} 
+    input={'text'} 
     inputValue={formData.availableTimeslots} 
     onChange={(e) => handleInputChange('availableTimeslots', e.target.value)} />
     <Dropdown
@@ -99,21 +214,22 @@ const AddClass = () => {
       </form>
       <div className='p-4'/>
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-24">
-  <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 w-[179px] relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer">
+  <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 w-[179px] relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer"
+  onClick={handleAddClass}>
     <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
       Add Course
     </p>
   </div>
   <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#bb421c] cursor-pointer">
     <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
-      Discard Course
+      Back
     </p>
   </div>
 </div>
     </div>
   </div>
   </div>
-  <UserPanel/>
+  <UserPanel Username={undefined}/>
 </div>
   )
 }
