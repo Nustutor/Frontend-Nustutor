@@ -31,6 +31,7 @@ const HeroCTA = () => {
         console.log(userData)
         const userId = userData.results[0].uuid;
         console.log('FOO',userId)
+        console.log(userData)
         router.push(`/dashboard/${userId}`);
       } else {
         console.error('Error fetching user data:', response.statusText);
