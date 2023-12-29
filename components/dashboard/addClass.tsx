@@ -180,7 +180,7 @@ const AddClass = () => {
     <div className='flex flex-col flex-grow-0 flex-shrink-0 '>
       <form>
     <Dropdown
-        title="Choose the most relevant subject to your class"
+        title="Choose the most relevant degree to your class"
         options={universitySubjects}
         selectedOption={selectedOptions.suid}
         onSelect={(value) => handleDropdownSelect('suid', value)}
