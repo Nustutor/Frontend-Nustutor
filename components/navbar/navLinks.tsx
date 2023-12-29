@@ -4,11 +4,21 @@ import {useRouter} from 'next/navigation'
 
 const Links = () => {
 
-  
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
 
   const router = useRouter();
   const homeClick = () => {
-    router.push('/home')
+    if (uuid && token) {
+      router.push('/home')
+    }
+    else
+    {
+      router.push('/onboarding/signup')
+    }
   }
 
   
