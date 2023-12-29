@@ -9,7 +9,7 @@ import RecentActivity from './recentActivity'
 const StudentDashboard = ({Username}) => {
   return (
     <div className="flex justify-start items-center  h-[1514px] gap-8 bg-white">
-        <Sidebar/>
+        <Sidebar showLogo = {false}/>
   <div className="flex flex-col justify-start items-center self-stretch flex-grow relative gap-6 pt-5">
     <Searchbar/>
     <Banners title="Student"/>

@@ -2,6 +2,7 @@
 
 import TutorDashboard from '@/components/dashboard/Tindex'
 import Loader from '@/components/loader'
+import TutorNav from '@/components/offerings/tutorNav'
 import React, { useEffect, useState } from 'react'
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 

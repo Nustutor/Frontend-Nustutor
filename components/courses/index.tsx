@@ -3,6 +3,7 @@
 import React, {useState, useEffect} from 'react'
 import CourseCard from './courseCard';
 import { useRouter } from 'next/navigation';
+import { get } from 'http';
 
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
@@ -49,37 +50,38 @@ const Course = () => {
   };
 
     handleDegree();
-
-    const getSubjectsByDegree = async (degree) => {
-      console.log('checkdegree',degree);
-      
-      const response = await fetch(`${endpoint}/subject/degree_subjects/`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'uuid': `${uuid}`,
-          'degree': `${degree}`,
-        },
-      });
     
-      if (response.ok) {
-        const data = await response.json();
-        const subjects = data.results;
-        console.log('FOOsubs',subjects);
-        setSubjects(subjects);
-        return subjects;
-      } else {
-        console.error("No degree found");
-      }
-    };
-    
-    // Call the function with the degree
-    getSubjectsByDegree("BACHELOR OF SOFTWARE ENGINEERING ");
-
   }, []);
 
-  
+  useEffect(() => {
+    if (degree) {
+      const getSubjectsByDegree = async (degree) => {
+        console.log('checkdegree',degree);
+        
+        const response = await fetch(`${endpoint}/subject/degree_subjects/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            'degree': `${degree}`,
+          },
+        });
+      
+        if (response.ok) {
+          const data = await response.json();
+          const subjects = data.results;
+          console.log('FOOsubs',subjects);
+          setSubjects(subjects);
+          return subjects;
+        } else {
+          console.error("No degree found");
+        }
+      };
+      getSubjectsByDegree(degree);
+    }
+    
+  }, [degree]);
 
   return (
     <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 py-24 bg-[#808080]/[0.08]">
