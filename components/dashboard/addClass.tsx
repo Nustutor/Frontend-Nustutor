@@ -12,7 +12,6 @@ import TimePicker from './TimePicker';
 import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-
 const AddClass = () => {
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
@@ -47,11 +46,23 @@ const AddClass = () => {
   }, [formData]);
 
     const handleDropdownSelect = (dropdownName, value) => {
+
+      console.log('dropdown check',dropdownName + value);
+
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       [dropdownName]: value,
     }));
 
+    const selectedSubject = subjects.find(subject => subject.name === value);
+      if (selectedSubject) {
+        setFormData((prevData) => ({
+          ...prevData,
+          suid: selectedSubject.suid,
+        }));
+        return;
+      }
+      console.log('reached formdata');
     setFormData((prevData) => ({
       ...prevData,
       [dropdownName]: value,
@@ -77,9 +88,11 @@ const AddClass = () => {
           const data = await response.json();
           console.log("data here", data);
           // Assuming the API response structure is { results: [...] }
-          const namesArray = data.results.map(item => item.name);
-          setNamesArray(namesArray)
-          console.log("Subjects are",namesArray)
+          const namesArray = data.results.map(item => `${item.name}`);
+          const subjectsArray = data.results.map(item => ({ name: item.name, suid: item.suid }));
+          setSubjects(subjectsArray);
+          setNamesArray(namesArray);
+          console.log("Subjects are", namesArray);
         } else {
           console.error('Error fetching subjects:', response.statusText);
         }
