@@ -1,19 +1,18 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-import InputField from './inputField'
-import Loader from '../loader'
+import React from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import InputField from "./inputField";
+import Loader from "../loader";
 // require('dotenv').config();
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 const login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState({
-
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleInputChange = (fieldName, value) => {
@@ -75,9 +74,9 @@ const handleLogin = async () => {
   }
 };
 
-const backClick = () => {
-  router.push('/')
-}
+  const backClick = () => {
+    router.push("/");
+  };
 
   return (
     <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
@@ -288,4 +287,4 @@ const backClick = () => {
   )
 }
 
-export default login
+export default login;

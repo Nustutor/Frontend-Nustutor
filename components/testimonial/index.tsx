@@ -23,8 +23,7 @@ const Testimonial = () => {
       </div>
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
         <p className="flex-grow-0 flex-shrink-0 w-[768px] text-2xl font-semibold text-center text-[#111928]">
-          "Nustutor is just awesome. It contains tons of predesigned components and pages starting
-          from login screen to complex dashboard. Perfect choice for your next SaaS application."
+          "Nustutor is exceptional! As a tutor on the platform, I appreciate its user-friendly interface and efficient matching system that connects me with students in need. Nustutor has provided me with a great opportunity to help students grasp challenging subjects and enhance their academic confidence. I highly recommend it to fellow tutors looking for a supportive and effective platform."
         </p>
       </div>
       <div className="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-3.5">
