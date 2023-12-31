@@ -50,22 +50,23 @@ const AddClass = () => {
     const handleDropdownSelect = (dropdownName, value) => {
 
       console.log('dropdown check',dropdownName + value);
-
+      if ((value !== 'Yes' && value !== 'No')) {
       setSelectedName(value);
+      }
 
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       [dropdownName]: value,
     }));
 
-    const selectedSubject = subjects.find(subject => subject.name === value);
-      if (selectedSubject) {
-        setFormData((prevData) => ({
-          ...prevData,
-          suid: selectedSubject.suid,
-        }));
-        return;
-      }
+    // const selectedSubject = subjects.find(subject => subject.name === value);
+    //   if (selectedSubject) {
+    //     setFormData((prevData) => ({
+    //       ...prevData,
+    //       suid: selectedSubject.suid,
+    //     }));
+    //     return;
+    //   }
       console.log('reached formdata');
     setFormData((prevData) => ({
       ...prevData,
