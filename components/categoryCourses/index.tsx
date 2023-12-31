@@ -4,8 +4,8 @@ import CourseCard from '../courses/courseCard';
 
 const CategoryCourses = () => {
 
-    const category = usePathname().split('/courses/')[1].replace(/%20/g, '');
-    
+  const category = decodeURIComponent(usePathname().split('/courses/')[1]);
+      
   interface Course {
     id: number;
     title: string;

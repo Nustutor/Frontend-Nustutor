@@ -89,7 +89,7 @@ const CategoryCard = ({CourseName,TutorNumber}) => {
           {CourseName}
         </p>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[246.67px] text-lg text-left text-black">
-          {TutorNumber}+ Courses Available
+          {TutorNumber} Available Courses
         </p>
       </div>
     </div>
