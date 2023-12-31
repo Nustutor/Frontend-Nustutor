@@ -91,3 +91,9 @@ body {
 .container {
   flex-wrap: wrap;
 }
+/* Add this CSS to your stylesheet or component */
+.title {
+  max-width: 100%; /* Set a maximum width for the title container */
+  overflow: hidden; /* Hide any overflow */
+  word-wrap: break-word; /* Break the word and move it to the next line */
+}
