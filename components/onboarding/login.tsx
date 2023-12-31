@@ -10,6 +10,8 @@ const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT;
 console.log("FOO", process.env.NEXT_PUBLIC_BACKEND_ENDPOINT);
 console.log("FOOBAR", endpoint);
 const login = () => {
+
+  const [errorMessage, setErrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -98,10 +100,16 @@ const login = () => {
           // Error during signup
           const errorData = await response.json();
           console.error("Error during Login:", errorData);
+          setErrorMessage(true);
+          setLoading(false)
+          return;
         }
       }
     } catch (error) {
+      setErrorMessage(true);
       console.error("Error during Login:", error);
+      setLoading(false)
+      return;
     }
     setTimeout(() => {
       window.location.href = "/home";
@@ -278,7 +286,9 @@ const login = () => {
                   For the purpose of industry regulation, your details are
                   required.
                 </p>
+                
               </div>
+              {errorMessage && <p className="text-red-500">Email or password is incorrect</p>}
             </div>
           </div>
           <form onSubmit={handleLogin}>

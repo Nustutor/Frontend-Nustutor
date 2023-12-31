@@ -22,17 +22,17 @@ const Team = () => {
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-16">
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-12">
               <Member
-                img="/images/team/1.png"
+                img="./muz.png"
                 role="Frontend Developer & Database Engineer"
                 name="Muzamil Kaleem"
               />
               <Member
-                img="/images/team/2.png"
+                img="./hadi.png"
                 role="Team Lead & Lead Backend Developer"
                 name="Hadi Khan"
               />
               <Member
-                img="/images/team/3.png"
+                img="./aman.png"
                 role="Lead Frontend Developer & UI/UX Designer"
                 name="Syed Aman Hussain"
               />
