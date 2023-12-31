@@ -8,10 +8,12 @@ const TutorVerify = () => {
   const router = useRouter();
 
   const handleClick = async () => {
+    const tuid = localStorage.getItem('tuid');
     const uuid = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
     try {
       console.log(`${uuid}`)
+      console.log(`${tuid}`)
       console.log(`Bearer ${token}`)
       // Get stored uid and token from localStorage
 
@@ -37,7 +39,7 @@ const TutorVerify = () => {
       if (response.ok) {
         console.log('Tutor account created successfully');
         // Redirect to the tutor page or handle the success as needed
-        router.push('/tutor/[id]');
+        router.push(`/tutor/${tuid}`);
       } else {
         console.error('Error creating tutor account:', response.statusText);
         // Handle the error as needed

@@ -10,10 +10,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import TimePicker from './TimePicker';
 import { Input } from 'postcss';
+import SuccessModal from './successModal';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 
 const AddClass = () => {
+  
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [selectedSubjectIndex, setSelectedSubjectIndex] = useState(null);
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userID');
@@ -21,7 +25,7 @@ const AddClass = () => {
   }
   const [selectedOptions, setSelectedOptions] = useState({
     suid: '',
-    multipuleStudents: '',
+    // multipuleStudents: '',
   });
   const [formData, setFormData] = useState({
     suid: '',
@@ -42,11 +46,11 @@ const AddClass = () => {
   useEffect(() => {
     setSelectedOptions({
       suid: formData.suid || '',
-      multipuleStudents: formData.multipleStudents || '',
+      // multipuleStudents: formData.multipleStudents || '',
     });
   }, [formData]);
 
-    const handleDropdownSelect = (dropdownName, value) => {
+  const handleDropdownSelect = (dropdownName, value, index) => {
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       [dropdownName]: value,
@@ -56,9 +60,11 @@ const AddClass = () => {
       ...prevData,
       [dropdownName]: value,
     }));
+
+    setSelectedSubjectIndex(index); // Save the selected subject index
   };
 
-  const [subjects, setSubjects] = useState([]);
+  const [subjectsids, setSubjectsids] = useState([]);
   const [namesArray, setNamesArray] = useState([]);
 
   useEffect(() => {
@@ -80,6 +86,9 @@ const AddClass = () => {
           const namesArray = data.results.map(item => item.name);
           setNamesArray(namesArray)
           console.log("Subjects are",namesArray)
+          const subjectIDs = data.results.map(item => item.suid);
+          setSubjectsids(subjectIDs);
+          console.log("suids are",subjectIDs)
         } else {
           console.error('Error fetching subjects:', response.statusText);
         }
@@ -95,6 +104,7 @@ const AddClass = () => {
 
 
   const handleAddClass = async () => {
+    console.log(token,'sep',uuid);
     const { suid, title, description, rate, multipleStudents, availableTimeslots } = formData;
     let tuid = localStorage.getItem('tuid'); // Replace with the actual tuid
 
@@ -119,6 +129,7 @@ const AddClass = () => {
 
       if (response.ok) {
         console.log('Class added successfully');
+        setIsSuccessModalOpen(true); 
         // Handle success, e.g., show a success message or redirect
       } else {
         console.log('time slot is',availableTimeslots.split(',').map(Number));
@@ -152,12 +163,17 @@ const AddClass = () => {
     <div className='p-4'/>
     <div className='flex flex-col flex-grow-0 flex-shrink-0 '>
       <form>
-    <Dropdown
-        title="Choose the most relevant subject to your class"
-        options={namesArray}
-        selectedOption={selectedOptions.suid}
-        onSelect={(value) => handleDropdownSelect('suid', value)}
-      />
+      <Dropdown
+  title="Choose the most relevant subject to your class"
+  options={subjectsids}
+  selectedOption={selectedOptions.suid}
+  onSelect={(value) => handleDropdownSelect('suid', value, namesArray.indexOf(value))}
+/>
+<InputField label={'Multiple Students'} 
+    directive={'Enter your Course Title'} 
+    input={'boolean'} 
+    inputValue={formData.multipleStudents} 
+    onChange={(e) => handleInputChange('multipleStudents', e.target.value)}/>
     <InputField label={'Title'} 
     directive={'Enter your Course Title'} 
     input={'text'} 
@@ -175,15 +191,9 @@ const AddClass = () => {
     onChange={(e) => handleInputChange('rate', e.target.value)} />
     <InputField label={'Available Timeslots'} 
     directive={'Enter your available timeslots'} 
-    input={'text'} 
+    input={'array'} 
     inputValue={formData.availableTimeslots} 
     onChange={(e) => handleInputChange('availableTimeslots', e.target.value)} />
-    <Dropdown
-        title="Do you wish to have multuple students"
-        options={['Yes', 'No']}
-        selectedOption={selectedOptions.multipuleStudents}
-        onSelect={(value) => handleDropdownSelect('multipleStudents', value)}
-      />
       </form>
       <div className='p-4'/>
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-24">
@@ -203,6 +213,7 @@ const AddClass = () => {
   </div>
   </div>
   <UserPanel Username={undefined}/>
+  {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
 </div>
   )
 }

@@ -3,20 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import TutorCard from '../courseDetails/tutorCard';
 import { useRouter } from 'next/navigation';
-const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
-  const [tutorClasses, setTutorClasses] = useState([]);
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT;
+
+const EnrolledClasses = ({ OfferText }: { OfferText: string }, url: string) => {
+  const [userClasses, setUserClasses] = useState([]);
   const router = useRouter();
-  let tuid = localStorage.getItem('tuid');
   let token = localStorage.getItem('token');
   let uuid = localStorage.getItem('userID');
-  console.log(tuid);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${endpoint}/class/tutorclasses/${tuid}`, {
+        const response = await fetch(`${endpoint}/api/v1/class/userclasses`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -25,22 +24,22 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
             // Include any additional headers if needed
           },
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const data = await response.json();
-        console.log(data);
-        setTutorClasses(data);
+        setUserClasses(data);
       } catch (error) {
-        console.error('Error fetching tutor classes:', error);
+        console.error('Error fetching user classes:', error);
       }
     };
 
-    if (tuid) {
+    if (uuid) {
       fetchData();
     }
-  }, [tuid]);
-
-  const handleClick = () => {
-    router.push(`/tutor/${tuid}/addClass`);
-  };
+  }, [uuid, token]);
 
   return (
     <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5">
@@ -49,29 +48,24 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
           {OfferText}
         </p>
         <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 gap-3">
-          <div
-            className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-3 py-2 rounded-lg bg-[#5508d8] cursor-pointer"
-            onClick={handleClick}
-          >
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-white">Add Class</p>
-          </div>
+          {/* Add any additional elements if needed */}
         </div>
       </div>
 
-      {tutorClasses.map((tutorClass) => (
+      {userClasses.map((userClass) => (
         <TutorCard
-          key={tutorClass.cuid}
+          key={userClass.cuid}
           OfferingHero={'/cardHero.png'}
           TutorPfp={'/tutorpfp.png'}
-          Suid={tutorClass.suid}
-          Title={tutorClass.title}
+          Suid={userClass.suid}
+          Title={userClass.title}
           TutorName={'Test Tutor'}
           TutorStatus={'undefined'}
-          OfferingRate={tutorClass.rate}
+          OfferingRate={userClass.rate}
         />
       ))}
     </div>
   );
 };
 
-export default Offers;
+export default EnrolledClasses;

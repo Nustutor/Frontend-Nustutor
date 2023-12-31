@@ -5,6 +5,7 @@ import Banners from './banners'
 import QuickActions from './quickActions'
 import Offers from './gigs'
 import RecentActivity from './recentActivity'
+import EnrolledClasses from './enrolledClasses'
 
 const StudentDashboard = ({Username}) => {
   return (
@@ -18,7 +19,7 @@ const StudentDashboard = ({Username}) => {
         <QuickActions Content={undefined}/>
         <QuickActions Content={undefined}/>
     </div>
-    <Offers OfferText={'Sent Offers'}/>
+    <EnrolledClasses OfferText={'Sent Offers'}/>
     <RecentActivity/>
   </div>
   <div
