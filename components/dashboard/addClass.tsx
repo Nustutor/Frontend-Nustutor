@@ -22,6 +22,8 @@ const AddClass = () => {
     suid: '',
     multipuleStudents: '',
   });
+
+  const [selectedName, setSelectedName] = useState('');
   const [formData, setFormData] = useState({
     suid: '',
     title: '',
@@ -40,7 +42,7 @@ const AddClass = () => {
 
   useEffect(() => {
     setSelectedOptions({
-      suid: formData.suid || '',
+      suid: selectedName || '',
       multipuleStudents: formData.multipleStudents || '',
     });
   }, [formData]);
@@ -48,6 +50,8 @@ const AddClass = () => {
     const handleDropdownSelect = (dropdownName, value) => {
 
       console.log('dropdown check',dropdownName + value);
+
+      setSelectedName(value);
 
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
@@ -89,10 +93,13 @@ const AddClass = () => {
           console.log("data here", data);
           // Assuming the API response structure is { results: [...] }
           const namesArray = data.results.map(item => `${item.name}`);
-          const subjectsArray = data.results.map(item => ({ name: item.name, suid: item.suid }));
-          setSubjects(subjectsArray);
+          const suidObject = data.results.reduce((obj, item) => {
+            obj[item.name] = item.suid;
+            return obj;
+          }, {});
+          setSubjects(data.results);
           setNamesArray(namesArray);
-          console.log("Subjects are", namesArray);
+          console.log("Subjects are", suidObject);
         } else {
           console.error('Error fetching subjects:', response.statusText);
         }
