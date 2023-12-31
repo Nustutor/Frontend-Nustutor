@@ -25,7 +25,7 @@ const SignupHook = () => {
       else{
     router.push('/onboarding/signup')
       }
-    }, 1000);
+    }, 700);
   }
   return (
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0  overflow-hidden gap-2.5 py-24 bg-gray-50">

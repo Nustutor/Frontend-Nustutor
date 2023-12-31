@@ -23,7 +23,7 @@ const Categories = () => {
     setLoading(true);
     setTimeout(() => {
     router.push('/courses/viewall');
-    }, 1000);
+    }, 700);
   }
 
   const [degrees, setDegrees] = useState([]);

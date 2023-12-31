@@ -105,7 +105,7 @@ const login = () => {
     }
     setTimeout(() => {
       window.location.href = "/home";
-    }, 2000);
+    }, 700);
   };
 
   const backClick = () => {

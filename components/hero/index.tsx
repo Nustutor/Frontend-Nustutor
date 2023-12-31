@@ -14,7 +14,7 @@ const Hero = () => {
     setLoading(true);
     setTimeout(() => {
       router.push('/onboarding/signup');
-    }, 1000);
+    }, 700);
   }
   
   return (

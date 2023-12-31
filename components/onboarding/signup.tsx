@@ -133,7 +133,7 @@ const Signup = () => {
     setLoading(true);
     setTimeout(() => {
     router.push('/')
-    },1000);
+    },700);
   }
 
   // console.log("FOO",formData);

@@ -14,7 +14,7 @@ const Team = () => {
               Our team
             </p>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-[768px] text-lg text-center text-black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
+            Programming visionaries, forging the path to technological brilliance.{" "}
             </p>
           </div>
         </div>

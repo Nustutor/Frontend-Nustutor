@@ -24,7 +24,7 @@ const Links = () => {
     {
       router.push('/onboarding/signup')
     }
-  }, 1000);
+  }, 700);
   }
 
   
