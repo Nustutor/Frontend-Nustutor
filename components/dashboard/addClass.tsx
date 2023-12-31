@@ -52,26 +52,28 @@ const AddClass = () => {
       console.log('dropdown check',dropdownName + value);
       if ((value !== 'Yes' && value !== 'No')) {
       setSelectedName(value);
+
+      setFormData((prevData) => ({
+        ...prevData,
+        [dropdownName]: subjects[value],
+      }));
+
+      return;
+
       }
+
+      setFormData((prevData) => ({
+        ...prevData,
+        [dropdownName]: value,
+      }));
 
     setSelectedOptions((prevOptions) => ({
       ...prevOptions,
       [dropdownName]: value,
     }));
 
-    // const selectedSubject = subjects.find(subject => subject.name === value);
-    //   if (selectedSubject) {
-    //     setFormData((prevData) => ({
-    //       ...prevData,
-    //       suid: selectedSubject.suid,
-    //     }));
-    //     return;
-    //   }
       console.log('reached formdata');
-    setFormData((prevData) => ({
-      ...prevData,
-      [dropdownName]: value,
-    }));
+    
   };
 
   const [subjects, setSubjects] = useState([]);
@@ -98,7 +100,7 @@ const AddClass = () => {
             obj[item.name] = item.suid;
             return obj;
           }, {});
-          setSubjects(data.results);
+          setSubjects(suidObject);
           setNamesArray(namesArray);
           console.log("Subjects are", suidObject);
         } else {
