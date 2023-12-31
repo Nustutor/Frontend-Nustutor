@@ -7,9 +7,9 @@ const CourseListing = ({Level,Category,Title,CourseDescription, CourseHero}) => 
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 px-[78px] py-16 bg-white">
     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-8">
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative gap-8">
-        <p className="flex-grow-0 flex-shrink-0 text-base font-bold text-center text-black/60">
-          {Level} &gt; {Category} &gt; {Title}
-        </p>
+      <p className="flex-grow-0 flex-shrink-0 text-base font-bold text-center text-black/60">
+        {Level} &gt; {Category} &gt; {Title}
+      </p>
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
           <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
             <img

@@ -7,8 +7,20 @@ const CourseCard = ({img,category,title,description}) => {
 
   const router = useRouter();
 
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
+
   const handleEnrollClick = () => {
+    if (uuid && token){
     router.push(`/home/${title}+${category}`);
+    }
+    else
+    {
+      router.push('onboarding/login')
+    }
   };
 
   return (

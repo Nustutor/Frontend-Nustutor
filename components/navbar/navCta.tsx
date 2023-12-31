@@ -3,13 +3,32 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
+let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
+
 const CTAs = () => {
   const router = useRouter();
   const handleSClick = () => {
+  if (uuid && token)
+  {
+    router.push('/home')
+  }
+  else{  
     router.push('/onboarding/signup')
   }
+  }
   const handleLClick = () => {
-    router.push('/onboarding/login')
+
+    if (uuid && token)
+    {
+      router.push('/home')
+    }
+    else{
+      router.push('/onboarding/login')
+    }
   }
   return (
 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-4 cursor-pointer">

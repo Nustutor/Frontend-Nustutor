@@ -78,3 +78,16 @@ body {
   max-height: 200px;
   overflow-y: auto;
 }
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
+.title-wrap {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.container {
+  flex-wrap: wrap;
+}
