@@ -12,7 +12,6 @@ import TimePicker from './TimePicker';
 import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-
 const AddClass = () => {
   const router = useRouter();
   const [selectedSubjectIndex, setSelectedSubjectIndex] = useState(null);
@@ -54,6 +53,15 @@ const AddClass = () => {
       [dropdownName]: value,
     }));
 
+    const selectedSubject = subjects.find(subject => subject.name === value);
+      if (selectedSubject) {
+        setFormData((prevData) => ({
+          ...prevData,
+          suid: selectedSubject.suid,
+        }));
+        return;
+      }
+      console.log('reached formdata');
     setFormData((prevData) => ({
       ...prevData,
       [dropdownName]: value,

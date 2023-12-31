@@ -1,14 +1,20 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import HeroImage from './heroImage';
 import { useRouter } from 'next/navigation';
+import Loader from '../loader';
 
 const Hero = () => {
 
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
   const handleSClick = () => {
-    router.push('/onboarding/signup')
+    setLoading(true);
+    setTimeout(() => {
+      router.push('/onboarding/signup');
+    }, 1000);
   }
   
   return (
@@ -27,11 +33,14 @@ const Hero = () => {
         </div>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-2 cursor-pointer">
           <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-4">
+            <div>
+          {loading && <Loader LoaderText={'Loading'} />}
             <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 h-12 relative overflow-hidden px-5 py-3 rounded-lg bg-[#7e3af2]"
             onClick={handleSClick}>
               <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
                 Sign up for free
               </p>
+            </div>
             </div>
             <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 h-12 relative overflow-hidden px-5 py-3 rounded-lg border border-gray-200 cursor-pointer">
               <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-[#1f2a37]">

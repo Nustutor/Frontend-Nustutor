@@ -4,7 +4,7 @@ import Footer from '@/components/footer'
 import HeroNavbar from '@/components/navbar/heroNav'
 import React from 'react'
 
-export default function Home() {
+export default function viewAll() {
     return (
       <div className="flex flex-col justify-start bg-white">  
     <HeroNavbar/>

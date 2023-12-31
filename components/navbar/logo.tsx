@@ -1,15 +1,24 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import {useRouter} from 'next/navigation'
+import Loader from '../loader';
 const Logo = () => {
 
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
+
+  
   const onClick = () => {
-    router.push('/')
+    setLoading(true);
+    setTimeout(() => {    
+      router.push('/')
+    }, 1000);
   }
 
   return (
+    <div>{loading && <Loader LoaderText={'Loading'} />}
     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3 cursor-pointer"
     onClick = {onClick}>
     <svg
@@ -115,6 +124,7 @@ const Logo = () => {
     <p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#111928]">
       Nustutor
     </p>
+  </div>
   </div>
     )
 }
