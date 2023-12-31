@@ -42,11 +42,11 @@ const Hero = () => {
               </p>
             </div>
             </div>
-            <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 h-12 relative overflow-hidden px-5 py-3 rounded-lg border border-gray-200 cursor-pointer">
+            {/* <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 h-12 relative overflow-hidden px-5 py-3 rounded-lg border border-gray-200 cursor-pointer">
               <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-[#1f2a37]">
                 Pricing &amp; FAQ
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
