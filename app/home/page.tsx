@@ -51,6 +51,11 @@ export default function Home() {
   getUser();
 }, [uuid, token]);
 
+useEffect(() => {
+  // Log the updated state value here
+  console.log('User Full Name:', userFullName);
+}, [userFullName]);
+
 if (userFullName === null) {
   // You can render a loading state or return null
   return(

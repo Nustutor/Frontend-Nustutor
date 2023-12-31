@@ -2,8 +2,11 @@
 
 import TutorDashboard from '@/components/dashboard/Tindex'
 import Loader from '@/components/loader'
+import HeroNavbar from '@/components/navbar/heroNav'
 import TutorNav from '@/components/offerings/tutorNav'
 import React, { useEffect, useState } from 'react'
+import Tutor from '../page'
+import TutorNavbar from '@/components/navbar/tutorNavbar'
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const page = () => {
@@ -52,6 +55,7 @@ if (userFullName === null) {
 }
   return (
     <div>
+      <TutorNavbar/>
       <TutorDashboard Username={userFullName}/>
     </div>
   )
