@@ -1,8 +1,11 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import {useRouter} from 'next/navigation'
+import Loader from '../loader';
 
 const Links = () => {
+
+  const [loading, setLoading] = useState(false);
 
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
@@ -12,6 +15,8 @@ const Links = () => {
 
   const router = useRouter();
   const homeClick = () => {
+    setLoading(true);
+    setTimeout(() => {    
     if (uuid && token) {
       router.push('/home')
     }
@@ -19,6 +24,7 @@ const Links = () => {
     {
       router.push('/onboarding/signup')
     }
+  }, 1000);
   }
 
   
@@ -40,11 +46,13 @@ const Links = () => {
 
   return (
     <div className="flex justify-start items-center flex-grow gap-8">
+      <div>{loading && <Loader LoaderText={'Loading'} />}
   <div className="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 relative cursor-pointer"
   onClick = {homeClick}>
     <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-center text-[#111928]">
       Home
     </p>
+  </div>
   </div>
   <div className="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 relative cursor-pointer"
   onClick = {featuresClick}>

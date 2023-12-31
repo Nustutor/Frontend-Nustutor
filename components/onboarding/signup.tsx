@@ -5,9 +5,12 @@ import { useState, useEffect } from 'react'
 import InputField from './inputField'
 import Dropdown from './dropdown'
 import { useRouter } from 'next/navigation';
+import Loader from '../loader'
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const Signup = () => {
+
+  const [loading, setLoading] = useState(false);
 
   const [degrees, setDegrees] = useState([]);
 
@@ -127,7 +130,10 @@ const Signup = () => {
   }
 
   const backClick = () => {
+    setLoading(true);
+    setTimeout(() => {
     router.push('/')
+    },1000);
   }
 
   // console.log("FOO",formData);
@@ -156,6 +162,7 @@ const Signup = () => {
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-8">
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[169px]">
+          <div>{loading && <Loader LoaderText={'Loading'} />}
           <div className="flex justify-start items-end flex-grow-0 flex-shrink-0 relative gap-[9px] cursor-pointer"
           onClick = {backClick}>
             <svg
@@ -175,6 +182,7 @@ const Signup = () => {
             <p className="flex-grow-0 flex-shrink-0 text-base font-semibold text-left text-[#8692a6]">
               Back
             </p>
+          </div>
           </div>
           <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
             <svg

@@ -1,10 +1,12 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
+import Loader from '../loader';
 
 const CourseCard = ({img,category,title,description}) => {
 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   let uuid: string | null, token: string | null;
@@ -14,13 +16,17 @@ const CourseCard = ({img,category,title,description}) => {
   }
 
   const handleEnrollClick = () => {
-    if (uuid && token){
-    router.push(`/home/${title}+${category}`);
-    }
-    else
-    {
-      router.push('onboarding/login')
-    }
+    setLoading(true);
+    setTimeout(() => {
+      if (uuid && token){
+        router.push(`/home/${title}+${category}`);
+        }
+        else
+        {
+          router.push('onboarding/login')
+        }
+    }, 1000);
+    
   };
 
   return (
@@ -63,12 +69,14 @@ const CourseCard = ({img,category,title,description}) => {
                 </p>
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[382px] gap-4">
+                <div>{loading && <Loader LoaderText={'Loading'} />}
                 <button
                   onClick={handleEnrollClick}
                   className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2 px-5 py-2 rounded-[5px] border border-black text-base text-left text-black cursor-pointer"
                 >
                   Enroll Now
                 </button>
+              </div>
               </div>
             </div>
           </div>

@@ -1,17 +1,24 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import {useRouter} from 'next/navigation'
+import Loader from '../loader';
+
 
 const CategoryCard = ({CourseName,TutorNumber}) => {
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/courses/${CourseName}`)
+    setLoading(true);
+    setTimeout(() => {    
+      router.push(`/courses/${CourseName}`)
+    }, 1000);
   }
   return (
+    <div>{loading && <Loader LoaderText={'Loading'} />}
     <div className="flex justify-start items-center flex-grow gap-8 p-4 rounded-[5px] bg-[#f7f7f7] cursor-pointer"
     onClick = {handleClick}>
+      
   <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-2.5 p-[34px] rounded-[5px] bg-white">
     <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2.5">
       <svg
@@ -82,6 +89,7 @@ const CategoryCard = ({CourseName,TutorNumber}) => {
       </svg>
     </div>
   </div>
+  
   <div className="flex flex-col justify-start items-start flex-grow gap-6">
     <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-4">
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative">
@@ -93,6 +101,7 @@ const CategoryCard = ({CourseName,TutorNumber}) => {
         </p>
       </div>
     </div>
+  </div>
   </div>
 </div>
   )

@@ -3,6 +3,7 @@ import React, { use } from 'react'
 import CategoryCard from './categoryCard';
 import {useState, useEffect} from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import Loader from '../loader';
 
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
@@ -14,10 +15,15 @@ let uuid: string | null, token: string | null;
 
 const Categories = () => {
 
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => {
     router.push('/courses/viewall');
+    }, 1000);
   }
 
   const [degrees, setDegrees] = useState([]);
@@ -83,9 +89,11 @@ const Categories = () => {
       </div>
     ))}
   </div>
+  <div>{loading && <Loader LoaderText={'Loading'} />}
       <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 w-[155px] relative gap-2 px-6 py-3 rounded-[5px] border border-black cursor-pointer">
         <p className="flex-grow-0 flex-shrink-0 text-base text-left text-black" onClick = {handleClick}>View All Courses</p>
       </div>
+    </div>
     </div>
   </div>
 </div>
