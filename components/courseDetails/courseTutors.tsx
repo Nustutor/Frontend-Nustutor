@@ -1,8 +1,44 @@
+'use client'
 import React from 'react'
+import { useState } from 'react';
+import { useEffect } from 'react';
 import TutorCTA from './tutorCTA';
 import TutorCard from './tutorCard';
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-const CourseTutors = ({showCTA}) => {
+const CourseTutors = ({ showCTA }) => {
+  const [subjectClasses, setSubjectClasses] = useState([]);
+  let token = localStorage.getItem('token');
+  let uuid = localStorage.getItem('userID');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const suid = 'yourSubjectId'; // Replace with your actual subject ID
+        const response = await fetch(`${endpoint}/subjectclasses/${suid}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers as needed
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setSubjectClasses(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="flex justify-start items-start relative overflow-hidden gap-2.5 px-[280px] py-16 rounded-tl-[64px] rounded-tr-[64px] bg-[#808080]/[0.08]">
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-16" id ="tutors">
@@ -16,8 +52,18 @@ const CourseTutors = ({showCTA}) => {
         </p>
       </div>
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
-        <TutorCard OfferingHero={"/cardHero.png"} TutorPfp={undefined} Category={"Computer Science"} OfferingTitle={"I will teach you C-Language Syntax"} TutorName={"Hadi Khan"} TutorStatus={"CS Sophomore at NUST"} OfferingRate={"2000"}/>
-        <TutorCard OfferingHero={"/cardHero.png"} TutorPfp={undefined} Category={"Computer Science"} OfferingTitle={"I will teach you Searching & Sorting Algorithims"} TutorName={"Momin Rizvi"} TutorStatus={"Math Major at HKUST"} OfferingRate={"6000"}/>
+                {subjectClasses.map((classData) => (
+        <TutorCard
+        key={classData.cuid}
+        OfferingHero={'/cardHero.png'}
+        TutorPfp={'/tutorpfp.png'}
+        Suid={classData.suid}
+        Title={classData.title}
+        TutorName={'Test Tutor'}
+        TutorStatus={'undefined'}
+        OfferingRate={classData.rate}
+      />
+        ))}
       </div>
     </div>  
     <TutorCTA showButton = {showCTA}/>

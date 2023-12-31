@@ -7,8 +7,6 @@ import InputField from './inputField'
 import Loader from '../loader'
 // require('dotenv').config();
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
-console.log("FOO",process.env.NEXT_PUBLIC_BACKEND_ENDPOINT)
-console.log("FOOBAR",endpoint)
 const login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -24,91 +22,58 @@ const login = () => {
       [fieldName]: value,
     }));
   };
+const handleLogin = async () => {
+  console.log('handleLogin function called');
+  setLoading(true);
+  try {
+    const formDataToSend = {
+      email: formData.email,
+      password: formData.password,
+    };
+    console.log('formDataToSend:', formDataToSend);
 
-//   function handleLogin() {
-//     console.log("FOO",process.env.BACKEND_ENDPOINT)
-// console.log("FOOBAR",endpoint)
-  
-//     // Assuming you have a user token or credentials to include in the request headers
-//     const headers = {
-//       // Add any headers you need, e.g., Authorization headers
-//       // 'Authorization': 'Bearer your_token',
-//       'Content-Type': 'application/json',
-//     };
-  
-//     // Make a GET request to the API endpoint with the provided headers
-//     fetch(`${endpoint}/test`, {
-//       method: 'GET',
-//       headers: headers,
-//       // You can add additional options here, like a request body for a POST request
-//       // body: JSON.stringify({ key: 'value' }),
-//     })
-//       .then(response => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json(); // or response.text() if the response is not in JSON format
-//       })
-//       .then(data => {
-//         console.log('API Response:', data);
-  
-//         // Do something with the API response, e.g., update UI or perform additional actions
-//       })
-//       .catch(error => {
-//         console.error('Error:', error);
-  
-//         // Handle errors, e.g., display an error message to the user
-//       });
-//   }
+    if (!formData.email || !formData.password) {
+      console.log('error: Email and password are required');
+      return; // Don't proceed with the API call if email or password is missing
+    }
 
-  const handleLogin = async () => {
-    console.log('handleLogin function called');
-    setLoading(true);
-    try {
-      const formDataToSend = {
-        email: formData.email,
-        password: formData.password, 
-      };
-      console.log('formDataToSend:', formDataToSend);
-      // Make API call to the backend
-      const response = await fetch(`${endpoint}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formDataToSend),
-      });
-  
-      if (!formData.email || !formData.password) {
-        console.log('error: Email and password are required')
-      }
-      else {
-      // Handle the response from the API
-      if (response.ok) {
-        // Successful signup
-        const responseData = await response.json();
-        localStorage.setItem('token', responseData.token);
-        localStorage.setItem('userID', responseData.userID);
-        console.log('Login successful:', responseData);
-        const getToken = () => localStorage.getItem('token');
-        const getuserID = () => localStorage.getItem('userID');
-        console.log('token:', getToken());
-        console.log('userID:', getuserID());
-        // redirect to home page
-        router.push('/home');
-      } else {
-        // Error during signup
-        const errorData = await response.json();
-        console.error('Error during Login:', errorData);
-      }
+    // Make API call to the backend
+    const response = await fetch(`${endpoint}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formDataToSend),
+    });
+
+    // Handle the response from the API
+    if (response.ok) {
+      // Successful login
+      const responseData = await response.json();
+      localStorage.setItem('token', responseData.token);
+      localStorage.setItem('userID', responseData.userID);
+      console.log('Login successful:', responseData);
+      const getToken = () => localStorage.getItem('token');
+      const getuserID = () => localStorage.getItem('userID');
+      console.log('token:', getToken());
+      console.log('userID:', getuserID());
+      // Redirect to the home page
+      router.push('/home');
+    } else {
+      // Error during login
+      const errorData = await response.json();
+      console.error('Error during Login:', errorData);
+
+      // You may want to display an error message to the user
+      // or handle specific error cases (e.g., incorrect password)
+      router.push('/onboarding/login');
     }
-    } catch (error) {
-      console.error('Error during Login:', error);
-    }
-    setTimeout(() => {
-      window.location.href = '/home';
-    }, 2000);
-}
+  } catch (error) {
+    console.error('Error during Login:', error);
+  } finally {
+    setLoading(false);
+  }
+};
 
 const backClick = () => {
   router.push('/')
@@ -278,7 +243,7 @@ const backClick = () => {
             </div>
           </div>
         </div>
-        <form onSubmit={handleLogin}>
+        <form>
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
         <InputField
             label="Email"
