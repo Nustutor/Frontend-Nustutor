@@ -10,13 +10,11 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import TimePicker from './TimePicker';
 import { Input } from 'postcss';
-import SuccessModal from './successModal';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 
 const AddClass = () => {
-  
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const router = useRouter();
   const [selectedSubjectIndex, setSelectedSubjectIndex] = useState(null);
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
@@ -129,7 +127,7 @@ const AddClass = () => {
 
       if (response.ok) {
         console.log('Class added successfully');
-        setIsSuccessModalOpen(true); 
+        router.push('/tutor/${tuid}/addClass/success'); 
         // Handle success, e.g., show a success message or redirect
       } else {
         console.log('time slot is',availableTimeslots.split(',').map(Number));
@@ -213,7 +211,6 @@ const AddClass = () => {
   </div>
   </div>
   <UserPanel Username={undefined}/>
-  {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
 </div>
   )
 }
