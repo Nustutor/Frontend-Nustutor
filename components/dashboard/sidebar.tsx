@@ -351,11 +351,7 @@ const Sidebar = ({showLogo}) => {
     </div>
   </div>
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[146px] gap-2.5">
-    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 py-2">
-      <p className="flex-grow w-[146px] text-base font-semibold text-left uppercase text-[#3f3f3f]">
-        SETTINGS
-      </p>
-    </div>
+    
     <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-3 py-2 rounded-[40px]">
       <svg
         width={16}
