@@ -10,9 +10,11 @@ const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 const Course = () => {
 
   const router = useRouter();
+  const [subID, setSubID] = useState('[]');
   const [degree, setDegree] = useState('');
   const [subjects, setSubjects] = useState([]);
   let uuid: string | null, token: string | null;
+  let suid: string | null, userDegree: string | null;
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userID');
     token = localStorage.getItem('token');
@@ -38,7 +40,8 @@ const Course = () => {
         console.log('FOOwehere', userData)
         const degree = userData.results[0].degree;
         setDegree(degree);
-        console.log('degreeFOO',degree)
+        localStorage.setItem('userDegree', userData.results[0].degree);
+        console.log('degreeFOO',localStorage.getItem('userDegree'));
       } else {
         console.error('Error fetching user data:', response.statusText);
         // If there's an error, you can handle it accordingly, e.g., show an error message
@@ -72,6 +75,7 @@ const Course = () => {
           const data = await response.json();
           const subjects = data.results;
           console.log('FOOsubs',subjects);
+          console.log('FOOsubs2',subjects[0].suid);  
           setSubjects(subjects);
           return subjects;
         } else {
@@ -117,6 +121,7 @@ const Course = () => {
       category={subject.code} 
       title={subject.name} 
       description="Learn from experts, apply what you learn, and advance your career or studies."
+      suid={subject.suid}
     />
   ))}
 </div>

@@ -4,8 +4,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import Loader from '../loader';
 
-const CourseCard = ({img,category,title,description}) => {
-
+const CourseCard = ({ img, category, title, description, suid }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -16,18 +15,21 @@ const CourseCard = ({img,category,title,description}) => {
   }
 
   const handleEnrollClick = () => {
+    console.log('finalfoo', suid);
     setLoading(true);
+    // Store suid in local storage
+    localStorage.setItem('selectedSuid', suid);
+    console.log('finalfoo2', localStorage.getItem('selectedSuid'));
+
     setTimeout(() => {
-      if (uuid && token){
+      if (uuid && token) {
         router.push(`/home/${title}+${category}`);
-        }
-        else
-        {
-          router.push('onboarding/login')
-        }
+      } else {
+        router.push('onboarding/login');
+      }
     }, 1000);
-    
   };
+
 
   return (
     <div className="flex flex-col justify-start items-start flex-grow relative gap-6 rounded-[5px] bg-[#f7f7f7]">

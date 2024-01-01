@@ -10,12 +10,11 @@ const CourseTutors = ({ showCTA }) => {
   const [subjectClasses, setSubjectClasses] = useState([]);
   let token = localStorage.getItem('token');
   let uuid = localStorage.getItem('userID');
-
+  let suid = localStorage.getItem('selectedSuid');
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const suid = 'yourSubjectId'; // Replace with your actual subject ID
-        const response = await fetch(`${endpoint}/subjectclasses/${suid}`, {
+        const response = await fetch(`${endpoint}/class/subjectclasses/${suid}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -30,6 +29,7 @@ const CourseTutors = ({ showCTA }) => {
         }
 
         const data = await response.json();
+        console.log('cuid',data);
         setSubjectClasses(data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -55,6 +55,7 @@ const CourseTutors = ({ showCTA }) => {
                 {subjectClasses.map((classData) => (
         <TutorCard
         key={classData.cuid}
+        Cuid = {classData.cuid}
         OfferingHero={'/cardHero.png'}
         TutorPfp={'/tutorpfp.png'}
         Suid={classData.suid}
