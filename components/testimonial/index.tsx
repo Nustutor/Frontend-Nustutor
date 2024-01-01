@@ -2,7 +2,7 @@ import React from 'react'
 
 const Testimonial = () => {
   return (
-    <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[1440px] overflow-hidden gap-2.5 py-24 bg-gray-50">
+    <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 overflow-hidden gap-2.5 py-24 bg-gray-50">
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[1280px] gap-16">
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[1216px] gap-6">
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative pt-[9px]">

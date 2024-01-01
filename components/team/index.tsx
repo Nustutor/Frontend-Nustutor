@@ -27,7 +27,7 @@ const Team = () => {
                 name="Muzamil Kaleem"
               />
               <Member
-                img="./hadi.png"
+                img="./hadi.jpg"
                 role="Team Lead & Lead Backend Developer"
                 name="Hadi Khan"
               />
