@@ -13,6 +13,7 @@ import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const AddClass = () => {
+
   const router = useRouter();
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
@@ -117,10 +118,10 @@ const AddClass = () => {
 
   }, []); 
 
-
+  let tuid = localStorage.getItem('tuid'); 
   const handleAddClass = async () => {
     const { suid, title, description, rate, multipleStudents, availableTimeslots } = formData;
-    let tuid = localStorage.getItem('tuid'); // Replace with the actual tuid
+// Replace with the actual tuid
 
     try {
       const response = await fetch(`${endpoint}/class/addclass/${tuid}`, {
@@ -158,6 +159,9 @@ const AddClass = () => {
   };
 
   console.log(formData)
+  const handleClick = () => {
+    router.push(`/tutor/${tuid}`);
+  }
 
   return (
 <div className="flex justify-start items-center gap-8 bg-white">
@@ -218,7 +222,8 @@ const AddClass = () => {
       Add Course
     </p>
   </div>
-  <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#bb421c] cursor-pointer">
+  <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-6 py-3.5 rounded-lg bg-[#bb421c] cursor-pointer"
+  onClick={handleClick}>
     <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
       Back
     </p>
