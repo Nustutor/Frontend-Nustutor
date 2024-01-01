@@ -13,6 +13,7 @@ import { Input } from 'postcss';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const AddClass = () => {
+  const router = useRouter();
   let uuid: string | null, token: string | null;
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userID');
@@ -142,6 +143,7 @@ const AddClass = () => {
 
       if (response.ok) {
         console.log('Class added successfully');
+        router.push(`/tutor/${tuid}/addClass/success`)
         // Handle success, e.g., show a success message or redirect
       } else {
         console.log('time slot is',availableTimeslots.split(',').map(Number));
@@ -181,6 +183,12 @@ const AddClass = () => {
         selectedOption={selectedOptions.suid}
         onSelect={(value) => handleDropdownSelect('suid', value)}
       />
+          <Dropdown
+        title="Do you wish to have multuple students"
+        options={['Yes', 'No']}
+        selectedOption={selectedOptions.multipuleStudents}
+        onSelect={(value) => handleDropdownSelect('multipleStudents', value)}
+      />
     <InputField label={'Title'} 
     directive={'Enter your Course Title'} 
     input={'text'} 
@@ -201,12 +209,6 @@ const AddClass = () => {
     input={'text'} 
     inputValue={formData.availableTimeslots} 
     onChange={(e) => handleInputChange('availableTimeslots', e.target.value)} />
-    <Dropdown
-        title="Do you wish to have multuple students"
-        options={['Yes', 'No']}
-        selectedOption={selectedOptions.multipuleStudents}
-        onSelect={(value) => handleDropdownSelect('multipleStudents', value)}
-      />
       </form>
       <div className='p-4'/>
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-24">

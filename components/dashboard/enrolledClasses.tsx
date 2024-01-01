@@ -15,7 +15,7 @@ const EnrolledClasses = ({ OfferText }: { OfferText: string }, url: string) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${endpoint}/api/v1/class/userclasses`, {
+        const response = await fetch(`${endpoint}/class/userclasses`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -61,8 +61,8 @@ const EnrolledClasses = ({ OfferText }: { OfferText: string }, url: string) => {
           Title={userClass.title}
           TutorName={'Test Tutor'}
           TutorStatus={'undefined'}
-          OfferingRate={userClass.rate}
-        />
+          OfferingRate={userClass.rate} 
+          Cuid={undefined}        />
       ))}
     </div>
   );
