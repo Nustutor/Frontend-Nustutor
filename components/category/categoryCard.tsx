@@ -12,7 +12,7 @@ const CategoryCard = ({CourseName,TutorNumber}) => {
     setLoading(true);
     setTimeout(() => {    
       router.push(`/courses/${CourseName}`)
-    }, 1000);
+    }, 700);
   }
   return (
     <div>{loading && <Loader LoaderText={'Loading'} />}

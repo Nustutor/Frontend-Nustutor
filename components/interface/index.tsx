@@ -10,9 +10,10 @@ const Interface = () => {
           Tutee Mode
         </p>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[608px] text-xl text-left text-gray-500">
-          Deliver great service experiences fast - without the complexity of traditional ITSM
-          solutions.Accelerate critical development work, eliminate toil, and deploy changes with
-          ease.
+        Discover a personalized learning journey with Nustutor's Tutee Mode. Connect with qualified tutors, schedule tailored sessions, and receive instant support for an enriched academic experience.
+<br/><br/>
+
+
         </p>
       </div>
       <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
@@ -38,7 +39,7 @@ const Interface = () => {
               </svg>
               <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                  Continuous integration and deployment
+                Explore qualified tutors<br/>
                 </p>
               </div>
             </div>
@@ -61,7 +62,8 @@ const Interface = () => {
               </svg>
               <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                  Development workflow
+                  
+Schedule personalized sessions<br/>
                 </p>
               </div>
             </div>
@@ -84,14 +86,15 @@ const Interface = () => {
               </svg>
               <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                  Knowledge management
+                  
+Receive instant support<br/>
+
                 </p>
               </div>
             </div>
           </div>
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-[608px] text-xl text-left text-gray-500">
-            Deliver great service experiences fast - without the complexity of traditional ITSM
-            solutions.
+            Bypass the challenges of traditional education with Nustutor's Tutee Mode. Connect with qualified tutors, schedule tailored sessions, and receive instant support for an enriched academic experience.
           </p>
         </div>
       </div>
@@ -116,9 +119,9 @@ const Interface = () => {
           Tutor Mode
         </p>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[608px] text-xl text-left text-gray-500">
-          Deliver great service experiences fast - without the complexity of traditional ITSM
-          solutions.Accelerate critical development work, eliminate toil, and deploy changes with
-          ease.
+        Unlock the potential of Tutor Mode on Nustutor. Showcase your expertise, connect with students, and contribute to their academic success through personalized tutoring sessions.
+<br/><br/>
+
         </p>
       </div>
       <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
@@ -143,7 +146,8 @@ const Interface = () => {
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                Dynamic reports and dashboards
+              Showcase your expertise<br/>
+
               </p>
             </div>
           </div>
@@ -166,7 +170,7 @@ const Interface = () => {
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                Templates for everyone
+              Connect with students<br/>
               </p>
             </div>
           </div>
@@ -189,7 +193,9 @@ const Interface = () => {
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                Development workflow
+                
+Contribute to academic success<br/>
+
               </p>
             </div>
           </div>
@@ -212,7 +218,7 @@ const Interface = () => {
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                Limitless business automation
+                Teach others and grow yourself
               </p>
             </div>
           </div>
@@ -235,7 +241,7 @@ const Interface = () => {
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1.5">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[580px] text-base font-medium text-left text-[#111928]">
-                Knowledge management
+              Offer personalized tutoring sessions in Tutor Mode<br/>
               </p>
             </div>
           </div>

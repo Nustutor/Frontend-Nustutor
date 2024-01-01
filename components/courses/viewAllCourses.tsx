@@ -1,19 +1,19 @@
 'use client'
 
 import React, {useState, useEffect} from 'react'
-import CourseCard from './courseCard';
 import { useRouter } from 'next/navigation';
 import { get } from 'http';
+import CourseCard from '@/components/courses/courseCard';
+import Navbar from '@/components/navbar';
 
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const Course = () => {
 
+    
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-<<<<<<< HEAD
-  const [subID, setSubID] = useState('[]');
-=======
   const handleviewAll = () => {
     setLoading(true);
     setTimeout(() => {
@@ -21,11 +21,9 @@ const Course = () => {
     }, 700);
 
   }
->>>>>>> 2a447c053ecee169e5a0e12f4159832a51dd3fcf
   const [degree, setDegree] = useState('');
   const [subjects, setSubjects] = useState([]);
   let uuid: string | null, token: string | null;
-  let suid: string | null, userDegree: string | null;
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userID');
     token = localStorage.getItem('token');
@@ -51,8 +49,7 @@ const Course = () => {
         console.log('FOOwehere', userData)
         const degree = userData.results[0].degree;
         setDegree(degree);
-        localStorage.setItem('userDegree', userData.results[0].degree);
-        console.log('degreeFOO',localStorage.getItem('userDegree'));
+        console.log('degreeFOO',degree)
       } else {
         console.error('Error fetching user data:', response.statusText);
         // If there's an error, you can handle it accordingly, e.g., show an error message
@@ -86,7 +83,6 @@ const Course = () => {
           const data = await response.json();
           const subjects = data.results;
           console.log('FOOsubs',subjects);
-          console.log('FOOsubs2',subjects[0].suid);  
           setSubjects(subjects);
           return subjects;
         } else {
@@ -104,7 +100,7 @@ const Course = () => {
     <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[768px] gap-4">
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-6">
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[768px] text-[56px] font-bold text-center text-black">
-          Courses
+          All Courses For {degree}
         </p>
         <p className="self-stretch flex-grow-0 flex-shrink-0 w-[768px] text-lg text-center text-black">
           Your Ultimate Guide to learning
@@ -119,37 +115,20 @@ const Course = () => {
         
       </div>
       <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-x-auto gap-16">
-      <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1312px] gap-8">
-<<<<<<< HEAD
+      <div className="flex flex-wrap">
   {subjects.map((subject, i) => (
-    <CourseCard 
-      key={i}
-      img="/courseImg.png" 
-      category={subject.code} 
-      title={subject.name} 
-      description="Learn from experts, apply what you learn, and advance your career or studies."
-      suid={subject.suid}
-    />
+    <div className="w-1/2">
+      <CourseCard 
+        key={i}
+        img="/courseImg.png" 
+        category={subject.code} 
+        title={subject.name} 
+        description="Learn from experts, apply what you learn, and advance your career or studies."
+      />
+    </div>
   ))}
-=======
-      {subjects.slice(0, 15).map((subject, i) => (
-  <CourseCard 
-    key={i}
-    img="/courseImg.png" 
-    category={subject.code} 
-    title={subject.name} 
-    description="Learn from experts, apply what you learn, and advance your career or studies."
-  />
-))}
->>>>>>> 2a447c053ecee169e5a0e12f4159832a51dd3fcf
 </div>
-      </div>
-      <div>{loading && <Loader LoaderText={'Loading'} />}
-      <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2 px-4 py-2 rounded-[5px] border border-black cursor-pointer"
-      onClick = {handleviewAll}>
-        <p className="flex-grow-0 flex-shrink-0 text-base text-left text-black">View All Courses</p>
-      </div>
-      </div>
+</div>
     </div>
   </div>
 </div>

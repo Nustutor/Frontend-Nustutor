@@ -14,7 +14,7 @@ const Logo = () => {
     setLoading(true);
     setTimeout(() => {    
       router.push('/')
-    }, 1000);
+    }, 700);
   }
 
   return (
