@@ -25,7 +25,7 @@ const CourseCard = ({img,category,title,description}) => {
         {
           router.push('onboarding/login')
         }
-    }, 1000);
+    }, 700);
     
   };
 

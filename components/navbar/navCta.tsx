@@ -23,7 +23,7 @@ const CTAs = () => {
     else{  
       router.push('/onboarding/signup')
     }
-  }, 1000);
+  }, 700);
   
   }
   const handleLClick = () => {
@@ -37,7 +37,7 @@ const CTAs = () => {
       router.push('/onboarding/login')
     }
   }
-  , 1000);
+  , 700);
   }
   return (
 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-4 cursor-pointer">

@@ -8,6 +8,8 @@ import Loader from "../loader";
 // require('dotenv').config();
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 const login = () => {
+
+  const [errorMessage, setErrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -63,6 +65,42 @@ const handleLogin = async () => {
       const errorData = await response.json();
       console.error('Error during Login:', errorData);
 
+
+      if (!formData.email || !formData.password) {
+        console.log("error: Email and password are required");
+      } else {
+        // Handle the response from the API
+        if (response.ok) {
+          // Successful signup
+          const responseData = await response.json();
+          localStorage.setItem("token", responseData.token);
+          localStorage.setItem("userID", responseData.userID);
+          console.log("Login successful:", responseData);
+          const getToken = () => localStorage.getItem("token");
+          const getuserID = () => localStorage.getItem("userID");
+          console.log("token:", getToken());
+          console.log("userID:", getuserID());
+          // redirect to home page
+          router.push("/home");
+        } else {
+          // Error during signup
+          const errorData = await response.json();
+          console.error("Error during Login:", errorData);
+          setErrorMessage(true);
+          setLoading(false)
+          return;
+        }
+      }
+    } catch (error) {
+      setErrorMessage(true);
+      console.error("Error during Login:", error);
+      setLoading(false)
+      return;
+    }
+    setTimeout(() => {
+      window.location.href = "/home";
+    }, 700);
+  };
       // You may want to display an error message to the user
       // or handle specific error cases (e.g., incorrect password)
       router.push('/onboarding/login');
@@ -227,7 +265,23 @@ const handleLogin = async () => {
                 Nustutor
               </p>
             </div>
+            <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
+              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
+                <p className="flex-grow-0 flex-shrink-0 text-3xl font-bold text-left text-black">
+                  Login into your Account
+                </p>
+              </div>
+              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
+                <p className="flex-grow-0 flex-shrink-0 w-[411px] text-lg text-left text-[#8692a6]">
+                  For the purpose of industry regulation, your details are
+                  required.
+                </p>
+                
+              </div>
+              {errorMessage && <p className="text-red-500">Email or password is incorrect</p>}
+            </div>
             <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-right text-white">STEP 01/03</p>
+
           </div>
           <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
             <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative">
