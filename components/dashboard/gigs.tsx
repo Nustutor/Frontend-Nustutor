@@ -7,6 +7,7 @@ const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
   const [tutorClasses, setTutorClasses] = useState([]);
+  const [tutorName, setTutorName] = useState([]);
   const router = useRouter();
   let tuid = localStorage.getItem('tuid');
   let token = localStorage.getItem('token');
@@ -26,8 +27,26 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
           },
         });
         const data = await response.json();
+        console.log(data);
         
         setTutorClasses(data);
+
+        const response2 = await fetch(`${endpoint}/user/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers as needed
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data2 = await response2.json();
+        setTutorName(data2.results[0].fullname);        
       } catch (error) {
         console.error('Error fetching tutor classes:', error);
       }
@@ -66,7 +85,7 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
             TutorPfp={'/tutorpfp.png'}
             Suid={tutorClass.suid}
             Title={tutorClass.title}
-            TutorName={'Test Tutor'}
+            TutorName={`${tutorName}`}
             TutorStatus={'undefined'}
             OfferingRate={tutorClass.rate} 
             Cuid={tutorClass.cuid}        

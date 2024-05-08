@@ -38,6 +38,7 @@ const CourseTutors = ({ showCTA }) => {
 
         const data = await response.json();
         setSubjectClasses(data);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
