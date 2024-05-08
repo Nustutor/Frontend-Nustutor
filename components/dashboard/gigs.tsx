@@ -26,7 +26,7 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
           },
         });
         const data = await response.json();
-        console.log(data);
+        
         setTutorClasses(data);
       } catch (error) {
         console.error('Error fetching tutor classes:', error);
@@ -58,18 +58,23 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
         </div>
       </div>
 
-      {tutorClasses.map((tutorClass) => (
-        <TutorCard
-          key={tutorClass.cuid}
-          OfferingHero={'/cardHero.png'}
-          TutorPfp={'/tutorpfp.png'}
-          Suid={tutorClass.suid}
-          Title={tutorClass.title}
-          TutorName={'Test Tutor'}
-          TutorStatus={'undefined'}
-          OfferingRate={tutorClass.rate}
-        />
-      ))}
+      {tutorClasses.length > 0 ? (
+        tutorClasses.map((tutorClass) => (
+          <TutorCard
+            key={tutorClass.cuid}
+            OfferingHero={'/cardHero.png'}
+            TutorPfp={'/tutorpfp.png'}
+            Suid={tutorClass.suid}
+            Title={tutorClass.title}
+            TutorName={'Test Tutor'}
+            TutorStatus={'undefined'}
+            OfferingRate={tutorClass.rate} 
+            Cuid={tutorClass.cuid}        
+          />
+        ))
+      ) : (
+        <p>No tutor classes found.</p>
+      )}
     </div>
   );
 };

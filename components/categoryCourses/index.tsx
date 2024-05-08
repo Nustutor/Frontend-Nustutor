@@ -2,27 +2,52 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import CourseCard from '../courses/courseCard';
 
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
 const CategoryCourses = () => {
 
   const category = decodeURIComponent(usePathname().split('/courses/')[1]);
+  console.log(category);
+
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
       
   interface Course {
     id: number;
     title: string;
     category: string;
   }
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
     if (category) {
-      // Get courses from the backend
-       //using dummy data for now
-      const dummyData = [
-        { id: 1, title: 'Course 1', category: 'Category A' },
-        { id: 2, title: 'Course 2', category: 'Category A' },
-      ];
-      const filteredCourses = dummyData.filter((course) => course.category === category);
-      setCourses(filteredCourses);
+      const getSubjectsByDegree = async (degree) => {
+        console.log('checkdegree',degree);
+        
+        const response = await fetch(`${endpoint}/subject/degree_subjects/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            'degree': `${degree}`,
+          },
+        });
+      
+        if (response.ok) {
+          const data = await response.json();
+          const subjects = data.results;
+          console.log('FOOsubs',subjects);
+          setSubjects(subjects);
+          return subjects;
+        } else {
+          console.error("No degree found");
+        }
+      };
+      getSubjectsByDegree(category);
     }
   }, [category]);
 
@@ -43,18 +68,20 @@ const CategoryCourses = () => {
   </div>
 
       
-    <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-x-auto gap-16">
-  <div className="flex flex-wrap justify-start items-start flex-grow-0 flex-shrink-0 max-w-[1312px] gap-8">
-    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
-    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
-    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
-    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
-    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
-    <CourseCard img="/courseImg.png" category={category} title="Course Name" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros."/>
+  <div className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-x-auto gap-16">
+      <div className="flex flex-wrap">
+    {subjects.map((subject, i) => (
+        <CourseCard 
+          key={i}
+          img="/courseImg.png" 
+          category={subject.code} 
+          title={subject.name} 
+          description="Learn from experts, apply what you learn, and advance your career or studies."
+        />
+    ))}
   </div>
+</div>
     </div>
-    </div>
-
   );
 };
 

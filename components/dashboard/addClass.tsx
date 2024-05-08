@@ -121,6 +121,8 @@ const AddClass = () => {
     const { suid, title, description, rate, multipleStudents, availableTimeslots } = formData;
     let tuid = localStorage.getItem('tuid'); // Replace with the actual tuid
 
+    const multipleStudentsValue = multipleStudents === 'Yes' ? 1 : 0;
+
     try {
       const response = await fetch(`${endpoint}/class/addclass/${tuid}`, {
         method: 'POST',
@@ -135,7 +137,7 @@ const AddClass = () => {
           title,
           description,
           rate,
-          multipleStudents,
+          multipleStudents: multipleStudentsValue,
           availableTimeslots: availableTimeslots.split(',').map(Number), // Assuming timeslots are comma-separated integers
         }),
       });

@@ -4,23 +4,30 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import TutorCTA from './tutorCTA';
 import TutorCard from './tutorCard';
+import { usePathname } from 'next/navigation';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const CourseTutors = ({ showCTA }) => {
   const [subjectClasses, setSubjectClasses] = useState([]);
-  let token = localStorage.getItem('token');
-  let uuid = localStorage.getItem('userID');
+
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
+  const url = decodeURIComponent(usePathname().split('+')[0]);
+  const subject = url.split('/')[2];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const suid = 'yourSubjectId'; // Replace with your actual subject ID
-        const response = await fetch(`${endpoint}/subjectclasses/${suid}`, {
+        const response = await fetch(`${endpoint}/subjectclassesbyname/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
             'uuid': `${uuid}`,
+            'name': `${subject}`,
             // Include any additional headers as needed
           },
         });
