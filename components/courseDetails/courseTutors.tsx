@@ -21,7 +21,7 @@ const CourseTutors = ({ showCTA }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${endpoint}/subjectclassesbyname/`, {
+        const response = await fetch(`${endpoint}/class/subjectclassesbyname/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
