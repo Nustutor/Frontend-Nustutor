@@ -18,6 +18,7 @@ const Hero = () => {
   }
   
   return (
+    <div className='flex flex-col justify-start items-center'>
     <div className="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 w-[1440px] overflow-hidden bg-white">
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-[1440px] py-16">
     <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-[1280px] gap-24">
@@ -53,6 +54,7 @@ const Hero = () => {
     <HeroImage/>
     </div>
   </div>
+</div>
 </div>
   )
 }

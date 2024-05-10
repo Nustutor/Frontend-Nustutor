@@ -1,8 +1,20 @@
-import React from 'react'
+'use client'
 
-const TutorCard = ({OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,OfferingRate}) => {
+import React from 'react'
+import { useRouter } from 'next/navigation'
+
+const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,OfferingRate}) => {
+
+  const router = useRouter();
+  const cardClick = () => {
+    // Save the cuid in localStorage before navigating to the desired route
+    localStorage.setItem('selectedCuid', Cuid);
+    router.push(`/offering/${Cuid}`);
+  };
+
   return (
-    <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
+    <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8 cursor-pointer"
+    onClick={cardClick}>
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
     <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 w-[880px] gap-[18px]">
       <div

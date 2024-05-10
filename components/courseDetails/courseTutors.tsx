@@ -37,6 +37,7 @@ const CourseTutors = ({ showCTA }) => {
         }
 
         const data = await response.json();
+        console.log('cuid',data);
         setSubjectClasses(data);
 
       } catch (error) {
@@ -63,6 +64,7 @@ const CourseTutors = ({ showCTA }) => {
                 {subjectClasses.map((classData) => (
         <TutorCard
         key={classData.cuid}
+        Cuid = {classData.cuid}
         OfferingHero={'/cardHero.png'}
         TutorPfp={'/tutorpfp.png'}
         Suid={classData.suid}
