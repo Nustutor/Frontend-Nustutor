@@ -71,6 +71,7 @@ const CourseTutors = ({ showCTA }) => {
         Title={classData.title}
         TutorName={'Test Tutor'}
         TutorStatus={'undefined'}
+        TutorID={classData.tuid}
         OfferingRate={classData.rate}
       />
         ))}

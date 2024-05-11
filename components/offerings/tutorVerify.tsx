@@ -1,16 +1,19 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const TutorVerify = () => {
   const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
   const router = useRouter();
+  const [whatsappNumber, setWhatsappNumber] = useState('');
 
   const handleClick = async () => {
     const tuid = localStorage.getItem('tuid');
     const uuid = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
+
+
     try {
       console.log(`${uuid}`)
       console.log(`${tuid}`)
@@ -23,7 +26,6 @@ const TutorVerify = () => {
         return;
       }
 
-      // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint for tutor signup
 
       // Make the POST request
       const response = await fetch(`${endpoint}/tutor/signup`, {
@@ -35,6 +37,27 @@ const TutorVerify = () => {
         },
       });
 
+      const response2 = await fetch(`${endpoint}/tutor/addsociallink`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+          'uuid': `${uuid}`,
+        },
+        body: JSON.stringify({
+          tuid: tuid,
+          link: whatsappNumber,
+          platform: "WhatsApp",
+        }),
+      });
+
+      if (response2.ok) {
+        console.log('Tutor link added successfully');
+      } else {
+        console.error('Error adding tutor link:', response2.statusText);
+        // Handle the error as needed
+      }
+
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
         console.log('Tutor account created successfully');
@@ -44,10 +67,17 @@ const TutorVerify = () => {
         console.error('Error creating tutor account:', response.statusText);
         // Handle the error as needed
       }
+
+
+      setWhatsappNumber('');
     } catch (error) {
       console.error('Error creating tutor account:', error.message);
       // Handle the error as needed
     }
+  };
+
+  const handleChange = (event) => {
+    setWhatsappNumber(event.target.value);
   };
 
   return (
@@ -165,11 +195,22 @@ const TutorVerify = () => {
         </p>
       </div>
     </div>
-    <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-6 py-3.5 rounded-lg bg-[#17c817] cursor-pointer"
-    onClick={handleClick}>
-      <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-white">
-        Start Tutoring
-      </p>
+    <div className="flex flex-col justify-center items-center gap-4">
+      <input
+        type="text"
+        value={whatsappNumber}
+        onChange={handleChange}
+        placeholder="Enter WhatsApp Number"
+        className="px-4 py-2 border border-gray-300 rounded-md"
+      />
+      <div
+        className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden px-6 py-3.5 rounded-lg bg-[#17c817] cursor-pointer"
+        onClick={handleClick}
+      >
+        <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-white">
+          Start Tutoring
+        </p>
+      </div>
     </div>
   </div>
   <div className="flex flex-col justify-start items-center w-[1440px] absolute left-0 top-[783px] bg-white">
