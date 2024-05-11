@@ -84,7 +84,6 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
               {TutorName}
             </p>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-[824px] text-[8px] text-left capitalize text-[#202020]">
-              {TutorStatus}<br></br>
               {TutorContact}
             </p>
           </div>
