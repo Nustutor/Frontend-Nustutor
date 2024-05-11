@@ -9,6 +9,8 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
 
   const router = useRouter();
   const [TutorContact, setTutorContact] = useState();
+  const [Tutorname, setTutorname] = useState();
+
   const cardClick = () => {
     // Save the cuid in localStorage before navigating to the desired route
     localStorage.setItem('selectedCuid', Cuid);
@@ -39,6 +41,22 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
 
         const data = await response.json();
         setTutorContact(data[0].link);
+
+        const response2 = await fetch(`${endpoint}/tutor/gettutor/${TutorID}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+          },
+        });
+
+        if (!response2.ok) {
+          throw new Error(`Error: ${response2.status} - ${response2.statusText}`);
+        }
+
+        const data2 = await response2.json();
+        setTutorname(data2[0].fullname);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -81,7 +99,7 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
           </div>
           <div className="flex flex-col justify-start items-start flex-grow relative gap-1 bg-white">
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-[824px] text-[10px] font-medium text-left capitalize text-[#202020]">
-              {TutorName}
+              {Tutorname}
             </p>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-[824px] text-[8px] text-left capitalize text-[#202020]">
               {TutorContact}

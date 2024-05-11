@@ -59,10 +59,10 @@ const EnrolledClasses = ({ OfferText }: { OfferText: string }, url: string) => {
           TutorPfp={'/tutorpfp.png'}
           Suid={userClass.suid}
           Title={userClass.title}
-          TutorName={'Test Tutor'}
+          TutorID={userClass.tuid}
           TutorStatus={'undefined'}
           OfferingRate={userClass.rate} 
-          Cuid={undefined}        />
+          Cuid={userClass.cuid}        />
       ))}
     </div>
   );
