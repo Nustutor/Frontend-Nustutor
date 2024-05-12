@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Tutor from '@/app/tutor/page'
 
 
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
@@ -10,6 +11,11 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
   const router = useRouter();
   const [TutorContact, setTutorContact] = useState();
   const [Tutorname, setTutorname] = useState();
+  let uuid: string | null, token: string | null;
+    if (typeof window !== 'undefined') {
+      uuid = localStorage.getItem('userID');
+      token = localStorage.getItem('token');
+    }
 
   const cardClick = () => {
     // Save the cuid in localStorage before navigating to the desired route
@@ -19,11 +25,6 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
 
   useEffect(() => {
 
-    let uuid: string | null, token: string | null;
-    if (typeof window !== 'undefined') {
-      uuid = localStorage.getItem('userID');
-      token = localStorage.getItem('token');
-    }
     const fetchData = async () => {
       try {
         const response = await fetch(`${endpoint}/tutor/gettutorlinks/${TutorID}`, {
@@ -40,6 +41,7 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
         }
 
         const data = await response.json();
+        console.log("tutordata", data);
         setTutorContact(data[0].link);
 
         const response2 = await fetch(`${endpoint}/tutor/gettutor/${TutorID}`, {
@@ -56,6 +58,7 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
         }
 
         const data2 = await response2.json();
+        console.log("tutordata2", data2);
         setTutorname(data2[0].fullname);
       } catch (error) {
         console.error('Error fetching data:', error);

@@ -88,6 +88,7 @@ const Offers = ({ OfferText }: { OfferText: string }, url: string) => {
             TutorName={`${tutorName}`}
             TutorStatus={'undefined'}
             OfferingRate={tutorClass.rate} 
+            TutorID={tuid}
             Cuid={tutorClass.cuid}        
           />
         ))

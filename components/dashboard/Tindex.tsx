@@ -20,7 +20,6 @@ const TutorDashboard = ({Username}) => {
         <QuickActions Content={undefined}/>
     </div>
     <Offers OfferText={'Active Classes'}/>
-    <RecentActivity/>
   </div>
   <div
     className="flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-9 px-6 py-8 bg-white"
