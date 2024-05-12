@@ -56,6 +56,7 @@ const HeroCTA = () => {
 
       if (response.ok) {
         const tutorAccountData = await response.json();
+        console.log("tutordetails", tutorAccountData);
         // Assuming you have a tutor ID in the response, use it in the route
         const tutorId = tutorAccountData[0].tuid;
         localStorage.setItem('tuid', tutorAccountData[0].tuid);

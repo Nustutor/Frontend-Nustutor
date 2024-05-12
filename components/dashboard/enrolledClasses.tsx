@@ -30,6 +30,7 @@ const EnrolledClasses = ({ OfferText }: { OfferText: string }, url: string) => {
         }
 
         const data = await response.json();
+        console.log("tutordata3", data);
         setUserClasses(data);
       } catch (error) {
         console.error('Error fetching user classes:', error);
@@ -59,10 +60,10 @@ const EnrolledClasses = ({ OfferText }: { OfferText: string }, url: string) => {
           TutorPfp={'/tutorpfp.png'}
           Suid={userClass.suid}
           Title={userClass.title}
-          TutorName={'Test Tutor'}
+          TutorID={userClass.tuid}
           TutorStatus={'undefined'}
           OfferingRate={userClass.rate} 
-          Cuid={undefined}        />
+          Cuid={userClass.cuid}        />
       ))}
     </div>
   );

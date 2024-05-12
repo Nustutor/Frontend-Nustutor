@@ -2,16 +2,42 @@
 import React from 'react'
 import {useRouter} from 'next/navigation'
 
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
 const Sidebar = ({showLogo}) => {
 
+  let uuid: string | null, token: string | null;
+    if (typeof window !== 'undefined') {
+      uuid = localStorage.getItem('userID');
+      token = localStorage.getItem('token');
+    }
   const router = useRouter()
   const homeClick = () => {
     router.push('/')
   }
 
-  const handleLogout = () => {
-    localStorage.clear()
-    router.push('/')
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(`${endpoint}/user/logout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'uuid': `${uuid}`,
+          // Include any additional headers if needed
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Error in response: ${response.status} - ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log("logout",data);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+
+    localStorage.clear();
+    router.push('/');
   }
   
   return (

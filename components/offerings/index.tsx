@@ -8,7 +8,7 @@ import Dropdown from '../onboarding/dropdown';
 import SpDropdown from './spDropdown';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-const Offering = ({subject,title,description,rate,tutorName,tutorAbout}) => {
+const Offering = ({subject,title,description,rate,tutorName,tutorAbout,tutorSemester}) => {
   let token = localStorage.getItem('token');
   let uuid = localStorage.getItem('userID');
   let cuid = localStorage.getItem('selectedCuid');
@@ -129,7 +129,7 @@ const Offering = ({subject,title,description,rate,tutorName,tutorAbout}) => {
                 {tutorName}
               </p>
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[183px] text-base text-left capitalize text-[#202020]">
-                {tutorAbout}
+                Semester {tutorSemester}, {tutorAbout}
               </p>
             </div>
           </div>

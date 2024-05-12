@@ -13,6 +13,9 @@ const CourseOffering = () => {
   let uuid = localStorage.getItem('userID');
   let suid = localStorage.getItem('selectedSuid');
   const [classData, setClassData] = useState(null);
+  const [tutorName, setTutorname] = useState(null);
+  const [tutorAbout, setTutorAbout] = useState(null);
+  const [tutorSemester, setTutorSemester] = useState(null);
 
   useEffect(() => {
     // Fetch the cuid from localStorage
@@ -37,6 +40,26 @@ const CourseOffering = () => {
 
         const data = await response.json();
         setClassData(data[0]); // Assuming the API returns an array with a single class object
+
+        const response2 = await fetch(`${endpoint}/tutor/gettutor/${data[0].tuid}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers as needed
+          },
+        });
+
+        if (!response2.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data2 = await response2.json();
+        setTutorname(data2[0].fullname);
+        setTutorAbout(data2[0].degree);
+        setTutorSemester(data2[0].semester)
+
       } catch (error) {
         console.error('Error fetching class data:', error);
       }
@@ -54,8 +77,9 @@ const CourseOffering = () => {
           title={classData.title}
           description={classData.description}
           rate={classData.rate}
-          tutorName={'Hadi Khan'}
-          tutorAbout={'CS Sophomore at SEECS'}
+          tutorName={tutorName}
+          tutorAbout={tutorAbout}
+          tutorSemester={tutorSemester}
         />
       )}
     <Footer/>

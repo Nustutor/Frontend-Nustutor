@@ -4,22 +4,30 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import TutorCTA from './tutorCTA';
 import TutorCard from './tutorCard';
+import { usePathname } from 'next/navigation';
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const CourseTutors = ({ showCTA }) => {
   const [subjectClasses, setSubjectClasses] = useState([]);
-  let token = localStorage.getItem('token');
-  let uuid = localStorage.getItem('userID');
-  let suid = localStorage.getItem('selectedSuid');
+
+  let uuid: string | null, token: string | null;
+  if (typeof window !== 'undefined') {
+    uuid = localStorage.getItem('userID');
+    token = localStorage.getItem('token');
+  }
+  const url = decodeURIComponent(usePathname().split('+')[0]);
+  const subject = url.split('/')[2];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${endpoint}/class/subjectclasses/${suid}`, {
+        const response = await fetch(`${endpoint}/class/subjectclassesbyname/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
             'uuid': `${uuid}`,
+            'name': `${subject}`,
             // Include any additional headers as needed
           },
         });
@@ -31,6 +39,7 @@ const CourseTutors = ({ showCTA }) => {
         const data = await response.json();
         console.log('cuid',data);
         setSubjectClasses(data);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -62,6 +71,7 @@ const CourseTutors = ({ showCTA }) => {
         Title={classData.title}
         TutorName={'Test Tutor'}
         TutorStatus={'undefined'}
+        TutorID={classData.tuid}
         OfferingRate={classData.rate}
       />
         ))}

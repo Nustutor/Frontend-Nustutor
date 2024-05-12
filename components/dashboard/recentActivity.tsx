@@ -1,6 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
+const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 const RecentActivity = () => {
+
+  const [userClasses, setUserClasses] = useState([]);
+  let uuid: string | null, token: string | null;
+    if (typeof window !== 'undefined') {
+      uuid = localStorage.getItem('userID');
+      token = localStorage.getItem('token');
+    }
+  useEffect(() => {
+    const fetchUserClasses = async () => {
+      try {
+        const response = await fetch(`${endpoint}/class/userclasses`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers if needed
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`Error in response: ${response.status} - ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log("userclasses", data);
+        setUserClasses(data); 
+      } catch (error) {
+        console.error('Error fetching user classes:', error);
+      }
+    };
+
+    fetchUserClasses();
+  }, []);
+
   return (
     <div className="flex flex-col justify-start items-center self-stretch flex-grow gap-5">
   <div className="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0 relative">
@@ -17,7 +51,7 @@ const RecentActivity = () => {
   >
     <div className="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-14">
       <p className="flex-grow w-[263.5px] text-[8px] font-semibold text-left uppercase text-[#3f3f3f]">
-        instructor name &amp; date
+        instructor name 
       </p>
       <p className="flex-grow-0 flex-shrink-0 text-[8px] font-semibold text-center uppercase text-[#3f3f3f]">
         COURSE TYPE

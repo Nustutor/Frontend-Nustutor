@@ -7,11 +7,12 @@ const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 const page = () => {
   let uuid: string | null, token: string | null;
-  const [userFullName, setUserFullName] = useState<string | null>(null);
   if (typeof window !== 'undefined') {
     uuid = localStorage.getItem('userID');
     token = localStorage.getItem('token');
   }
+  const [userFullName, setUserFullName] = useState<string | null>(null);
+  
   useEffect(() => {
   const getUser = async () => {
     console.log(uuid)
