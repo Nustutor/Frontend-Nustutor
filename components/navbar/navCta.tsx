@@ -27,6 +27,7 @@ const CTAs = () => {
   
   }
   const handleLClick = () => {
+    console.log(uuid, token);
     setLoading(true);
     setTimeout(() => {
     if (uuid && token)
