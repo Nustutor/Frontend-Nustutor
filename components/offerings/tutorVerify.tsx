@@ -37,38 +37,39 @@ const TutorVerify = () => {
         },
       });
 
-      const response2 = await fetch(`${endpoint}/tutor/addsociallink`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`,
-          'uuid': `${uuid}`,
-        },
-        body: JSON.stringify({
-          tuid: tuid,
-          link: whatsappNumber,
-          platform: "WhatsApp",
-        }),
-      });
-
-      if (response2.ok) {
-        console.log('Tutor link added successfully');
-      } else {
-        console.error('Error adding tutor link:', response2.statusText);
-        // Handle the error as needed
-      }
-
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
         console.log('Tutor account created successfully');
         // Redirect to the tutor page or handle the success as needed
+        const response2 = await fetch(`${endpoint}/tutor/addsociallink`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+          },
+          body: JSON.stringify({
+            tuid: tuid,
+            link: whatsappNumber,
+            platform: "WhatsApp",
+          }),
+        });
+  
+        if (response2.ok) {
+          console.log('Tutor link added successfully');
+        } else {
+          console.error('Error adding tutor link:', response2.statusText);
+          // Handle the error as needed
+        }
         router.push(`/tutor/${tuid}`);
       } else {
         console.error('Error creating tutor account:', response.statusText);
         // Handle the error as needed
       }
 
+      
 
+    
       setWhatsappNumber('');
     } catch (error) {
       console.error('Error creating tutor account:', error.message);
