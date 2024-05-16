@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useRouter } from 'next/navigation'
+import Logout from '../logout';
 
 const TutorNav = () => {
   const router = useRouter();
@@ -23,7 +24,11 @@ const TutorNav = () => {
             Switch to Learning
           </p>
         </div>
+        
       </div>
+      <div style={{paddingLeft: "2rm"}}>
+          <Logout/>
+          </div>
       <div className="hidden md:flex justify-start items-center flex-grow-0 flex-shrink-0 gap-4" style={{ paddingLeft: "38rem" }}>
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2.5 p-1 cursor-pointer">
           <img

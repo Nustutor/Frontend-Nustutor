@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Logo from './logo';
 import Links from './navLinks';
 import HeroCTA from './heroCTA';
+import Logout from '../logout';
 
 const HeroNavbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,6 +28,9 @@ const HeroNavbar = () => {
             <Links />
             <HeroCTA />
           </ul>
+          <div style={{paddingLeft: "10rm"}}>
+          <Logout/>
+          </div>
         </div>
       )}
     </div>
