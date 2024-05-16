@@ -9,14 +9,11 @@ const TutorVerify = () => {
   const [whatsappNumber, setWhatsappNumber] = useState('');
 
   const handleClick = async () => {
-    const tuid = localStorage.getItem('tuid');
     const uuid = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
 
-
     try {
       console.log(`${uuid}`)
-      console.log(`${tuid}`)
       console.log(`Bearer ${token}`)
       // Get stored uid and token from localStorage
 
@@ -25,8 +22,6 @@ const TutorVerify = () => {
         console.error('Missing uid or token');
         return;
       }
-
-
       // Make the POST request
       const response = await fetch(`${endpoint}/tutor/signup`, {
         method: 'POST',
@@ -40,7 +35,31 @@ const TutorVerify = () => {
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
         console.log('Tutor account created successfully');
-        // Redirect to the tutor page or handle the success as needed
+        const tuid = localStorage.getItem('tuid');
+
+        const response3 = await fetch(`${endpoint}/tutor/tutorview/gettutor/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers if needed
+          },
+        });
+  
+        if (response3.ok) {
+          const tutorAccountData = await response3.json();
+          // Assuming you have a tutor ID in the response, use it in the route
+          const tutorId = tutorAccountData[0].tuid;
+          localStorage.setItem('tuid', tutorAccountData[0].tuid);
+          console.log('tutor id is',localStorage.getItem('tuid'));
+          // Redirect to the tutor page or handle the success as needed
+        const requestBody = {
+          tuid: tutorId,
+          link: whatsappNumber,
+          platform: "WhatsApp",
+        };
+        console.log("requestBody",requestBody);
         const response2 = await fetch(`${endpoint}/tutor/addsociallink`, {
           method: "POST",
           headers: {
@@ -48,28 +67,29 @@ const TutorVerify = () => {
             'Authorization': `Bearer ${token}`,
             'uuid': `${uuid}`,
           },
-          body: JSON.stringify({
-            tuid: tuid,
-            link: whatsappNumber,
-            platform: "WhatsApp",
-          }),
+          body: JSON.stringify(requestBody),
         });
   
         if (response2.ok) {
           console.log('Tutor link added successfully');
+
+          
+          console.log("tuid",tuid);
         } else {
           console.error('Error adding tutor link:', response2.statusText);
           // Handle the error as needed
         }
-        router.push(`/tutor/${tuid}`);
-      } else {
-        console.error('Error creating tutor account:', response.statusText);
-        // Handle the error as needed
-      }
-
-      
-
-    
+          router.push(`/tutor/${tutorId}`);
+        } else {
+          console.error('Error fetching tutor account data:', response3.statusText);
+          router.push('/home');
+        }
+        
+        } else {
+          console.error('Error creating tutor account:', response.statusText);
+          // Handle the error as needed
+        }
+        
       setWhatsappNumber('');
     } catch (error) {
       console.error('Error creating tutor account:', error.message);

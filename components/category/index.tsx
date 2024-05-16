@@ -60,7 +60,43 @@ const Categories = () => {
     chunkedDegrees.push(degrees.slice(i, i + 3));
   }
   return (
-    <div className="flex flex-col justify-center items-center  overflow-hidden gap-20 p-16 bg-white">
+    <div>
+      <div className="flex flex-col justify-center items-center overflow-hidden gap-8 p-8 md:p-16 bg-white md:hidden">
+  <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
+    <img
+      src="/category_hero.png"
+      className="flex-grow-0 flex-shrink-0 w-full h-auto object-none"
+    />
+  </div>
+  <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8 md:gap-16">
+    <p className="w-full text-3xl md:text-5xl font-bold text-center text-black">
+      Explore Courses By Category
+    </p>
+    <p className="w-full text-base md:text-lg text-left text-black">
+      Discover a wide range of courses covering a variety of subjects, taught by expert
+      instructors.
+    </p>
+  </div>
+  <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-8">
+    <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-4">
+      {chunkedDegrees.slice(0, 3).map((chunk, index) => (
+        <div key={index} className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-4">
+          {chunk.map((degree, index) => (
+            <CategoryCard key={index} CourseName={capitalizeWords(degree)} TutorNumber={"View"} />
+          ))}
+        </div>
+      ))}
+    </div>
+    <div>
+      {loading && <Loader LoaderText={'Loading'} />}
+      <button className="w-full md:w-auto flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2 px-6 py-3 rounded-md border border-black cursor-pointer bg-transparent text-black" onClick={handleClick}>
+        <p className="flex-grow-0 flex-shrink-0 text-base text-left">View All Courses</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+    <div className="hidden md:flex flex-col justify-center items-center  overflow-hidden gap-20 p-16 bg-white">
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
     <img
       src="/category_hero.png"
@@ -96,6 +132,7 @@ const Categories = () => {
     </div>
     </div>
   </div>
+</div>
 </div>
   )
 }
