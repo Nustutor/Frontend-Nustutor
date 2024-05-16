@@ -8,7 +8,7 @@ const Interface = () => {
   <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center text-[#111928]">
     Tutee Mode
   </p>
-  <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500 text-left w-[400px] mt-4">
+  <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500 text-left w-[350px] mt-4">
     Discover a personalized learning journey with Nustutor's Tutee Mode. Connect with qualified tutors, schedule tailored sessions, and receive instant support for an enriched academic experience.
   </p>
   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 mt-4">
@@ -59,7 +59,7 @@ const Interface = () => {
   </div>
   <div className="md:hidden">
       <br></br>
-    <p className="self-stretch flex-grow-0 flex-shrink-0 w-[400px] text-xl text-left text-gray-500">
+    <p className="self-stretch flex-grow-0 flex-shrink-0 w-[350px] text-xl text-left text-gray-500">
             Bypass the challenges of traditional education with Nustutor's Tutee Mode. Connect with qualified tutors, schedule tailored sessions, and receive instant support for an enriched academic experience.
           </p>
           </div>
@@ -168,13 +168,13 @@ Receive instant support<br/>
       />
     </div>
   </div>
-  <div className="md:hidden">
+  <div className="w-[350px] md:hidden">
   <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 overflow-hidden gap-20 py-24 bg-gray-50" id ="features">
     <div className="flex flex-col justify-center items-center md:hidden">
       <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center text-[#111928]">
         Tutor Mode
       </p>
-      <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500 text-left w-[400px] mt-4">
+      <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500 text-left w-[350px] mt-4">
         Unlock the potential of Tutor Mode on Nustutor. Showcase your expertise, connect with students, and contribute to their academic success through personalized tutoring sessions.
       </p>
     </div>
