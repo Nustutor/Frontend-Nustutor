@@ -166,20 +166,83 @@ const AddClass = () => {
   }
 
   return (
-<div className="flex justify-start items-center gap-8 bg-white">
+    <div>
+      <div className="flex justify-start items-center gap-8 bg-white md:hidden overflow-hidden">
+  <div className="w-full p-10">
+    <p className="text-5xl font-bold text-center text-black mb-10">
+      Add a Class
+    </p>
+    <form>
+      <Dropdown
+        title="Choose the most relevant subject to your class"
+        options={namesArray}
+        selectedOption={selectedOptions.suid}
+        onSelect={(value) => handleDropdownSelect('suid', value)}
+      />
+      <Dropdown
+        title="Do you wish to have multiple students"
+        options={['Yes', 'No']}
+        selectedOption={selectedOptions.multipleStudents}
+        onSelect={(value) => handleDropdownSelect('multipleStudents', value)}
+      />
+      <InputField 
+        label={'Title'} 
+        directive={'Enter your Course Title'} 
+        input={'text'} 
+        inputValue={formData.title} 
+        onChange={(e) => handleInputChange('title', e.target.value)}
+      />
+      <InputField 
+        label={'Description'} 
+        directive={'Enter your Course Description'} 
+        input={'text'} 
+        inputValue={formData.description} 
+        onChange={(e) => handleInputChange('description', e.target.value)} 
+      />
+      <InputField 
+        label={'Offering Rate per hour'} 
+        directive={'Enter your offering rate per hour'} 
+        input={'number'} 
+        inputValue={formData.rate} 
+        onChange={(e) => handleInputChange('rate', e.target.value)} 
+      />
+      <InputField 
+        label={'Available Timeslots'} 
+        directive={'Enter your available timeslots'} 
+        input={'text'} 
+        inputValue={formData.availableTimeslots} 
+        onChange={(e) => handleInputChange('availableTimeslots', e.target.value)} 
+      />
+    </form>
+    <div className='p-4'/>
+    <div className="flex justify-start items-start gap-24">
+      <div 
+        className="px-6 py-3.5 rounded-lg bg-[#1a56db] cursor-pointer"
+        onClick={handleAddClass}
+      >
+        <p className="text-base font-medium text-left text-white">
+          Add Class
+        </p>
+      </div>
+      <div 
+        className="px-6 py-3.5 rounded-lg bg-[#bb421c] cursor-pointer"
+        onClick={handleClick}
+      >
+        <p className="text-base font-medium text-left text-white">
+          Back
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="hidden md:flex justify-start items-center gap-8 bg-white">
         <Sidebar/>
         <div className="w-[944px] h-[1240px] relative overflow-hidden">
   <div className="flex flex-col justify-center items-center  top-5 gap-2.5 p-10">
     <p className="flex-grow-0 flex-shrink-0 text-5xl font-bold text-center text-black">
       Add a Class
     </p>
-    {/* <ul>
-        {subjects.map((subject) => (
-          <li key={subject.suid}>
-            {subject.name} - {subject.code} - {subject.degree}
-          </li>
-        ))}
-      </ul> */}
     <div className='p-4'/>
     <div className='flex flex-col flex-grow-0 flex-shrink-0 '>
       <form>
@@ -235,6 +298,7 @@ const AddClass = () => {
   </div>
   </div>
   <UserPanel Username={undefined}/>
+</div>
 </div>
   )
 }

@@ -2,7 +2,68 @@ import React from 'react'
 
 const Banners = ({title}) => {
   return (
-    <div className="w-[880px] h-[181px] relative overflow-hidden rounded-[20px] bg-[#702dff]">
+    <div>
+      <div className="w-full relative overflow-hidden bg-[#702dff] md:hidden">
+  <div className="w-full h-[calc(100vw * 181 / 880)] rounded-[calc(100vw * 20 / 880)]">
+    <svg
+      width={80}
+      height={80}
+      viewBox="0 0 80 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute left-[calc(100vw * 722 / 880)] top-[calc(100vw * 11 / 880)]"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <path
+        d="M40 0C40 0 42.207 20.5997 50.8036 29.1964C59.4003 37.793 80 40 80 40C80 40 59.4003 42.207 50.8036 50.8036C42.207 59.4003 40 80 40 80C40 80 37.793 59.4003 29.1964 50.8036C20.5997 42.207 0 40 0 40C0 40 20.5997 37.793 29.1964 29.1964C37.793 20.5997 40 0 40 0Z"
+        fill="white"
+        fillOpacity="0.25"
+      />
+    </svg>
+    {/* Other SVG elements */}
+  </div>
+  <div className="w-full h-[calc(100vw * 141 / 880)] absolute left-0 top-0 flex flex-col justify-start items-start gap-[calc(100vw * 4 / 880)] p-[calc(100vw * 4 / 880)]">
+    <p className="text-xs text-left uppercase text-white">
+      {title} dashboard
+    </p>
+    <p className="text-2xl font-semibold text-left text-white">
+      <span className="text-2xl font-semibold text-left text-white">
+        Solidify your concepts &amp; exams
+      </span>
+      <br />
+      <span className="text-2xl font-semibold text-left text-white">
+        with expert tutoring.
+      </span>
+    </p>
+    <div className="flex justify-start items-center h-[calc(100vw * 9 / 880)] gap-[calc(100vw * 3 / 880)] px-[calc(100vw * 3 / 880)] py-[calc(100vw * 2 / 880)] rounded-[calc(100vw * 40 / 880)] bg-[#202020]">
+      <p className="text-xs font-medium text-right text-white">
+        Start Learning
+      </p>
+      <div className="w-[calc(100vw * 5 / 880)] h-[calc(100vw * 5 / 880)] relative p-[calc(100vw * 1.5 / 880)] rounded-[calc(100vw * 50 / 880)] bg-white">
+        <svg
+          width={8}
+          height={8}
+          viewBox="0 0 8 8"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="self-stretch flex-grow relative"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M1.33301 4.00013V2.81346C1.33301 1.34013 2.37634 0.736794 3.65301 1.47346L4.68301 2.06679L5.71301 2.66013C6.98967 3.39679 6.98967 4.60346 5.71301 5.34013L4.68301 5.93346L3.65301 6.52679C2.37634 7.26346 1.33301 6.66013 1.33301 5.18679V4.00013Z"
+            stroke="#202020"
+            strokeMiterlimit={10}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div className="hidden md:block w-[880px] h-[181px] relative overflow-hidden rounded-[20px] bg-[#702dff]">
   <svg
     width={80}
     height={80}
@@ -118,6 +179,7 @@ const Banners = ({title}) => {
       </div>
     </div>
   </div>
+</div>
 </div>
   )
 }

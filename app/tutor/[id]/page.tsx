@@ -31,10 +31,29 @@ const page = () => {
 
       if (response.ok) {
         const tutorAccountData = await response.json();
-        // Assuming you have a tutor ID in the response, use it in the route
-        console.log(tutorAccountData[0].fullname)
-        const fullName = tutorAccountData[0].fullname;
-        setUserFullName(fullName);
+        console.log("accdata",tutorAccountData);
+        const tuid = tutorAccountData[0].tuid;
+
+        const response2 = await fetch(`${endpoint}/tutor/gettutor/${tuid}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'uuid': `${uuid}`,
+            // Include any additional headers if needed
+          },
+        });
+
+        if (response2.ok)
+          {
+            const tutorData = await response2.json();
+            const fullName = tutorData[0].fullname;
+            setUserFullName(fullName);
+          }
+          else
+          {
+            console.error('Error fetching tutor data:', response2.statusText);
+          }
       } else {
         console.error('Error fetching tutor account data:', response.statusText);
         // If there's an error, route to /tutor
@@ -46,6 +65,7 @@ const page = () => {
   }
   getTutor();
 }, [uuid, token]);
+
 
 if (userFullName === null) {
   // You can render a loading state or return null

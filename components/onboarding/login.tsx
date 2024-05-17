@@ -121,7 +121,72 @@ const login = () => {
   };
 
   return (
-    <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
+    <div>
+
+      <div className="flex flex-col h-screen justify-center items-center bg-[#fffefc] md:hidden">
+  <div className="flex flex-col justify-start items-start gap-4 px-6 py-8 rounded-lg bg-[#1565d8]/90">
+    <div className="flex justify-start items-start">
+      <p className="text-3xl font-bold text-white">Nustutor</p>
+    </div>
+    <div className="flex justify-start items-start">
+      <p className="text-lg text-white">Tutoring app for students, by students</p>
+    </div>
+  </div>
+  <div className="flex flex-col justify-start items-center gap-8 w-full max-w-md px-6">
+    <div className="flex flex-col justify-start items-center gap-4 w-full">
+      <div className="flex justify-start items-center gap-2 cursor-pointer" onClick={backClick}>
+        <svg
+          width={20}
+          height={20}
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-5 h-5 text-white"
+        >
+          <path
+            d="M14.8627 3.225L13.3794 1.75L5.1377 10L13.3877 18.25L14.8627 16.775L8.0877 10L14.8627 3.225Z"
+            fill="currentColor"
+          />
+        </svg>
+        <p className="text-base font-semibold text-white">Back</p>
+      </div>
+      <div className="flex flex-col justify-start items-center gap-4 w-full">
+        <p className="text-3xl font-bold text-black">Login into your Account</p>
+        <p className="text-lg text-[#8692a6]">For the purpose of industry regulation, your details are required.</p>
+        {errorMessage && <p className="text-red-500">Email or password is incorrect</p>}
+      </div>
+    </div>
+    <form className="flex flex-col justify-center items-start gap-6 w-full overflow-hidden " onSubmit={handleLogin}>
+      <InputField
+        label="Email"
+        directive="Enter your Email"
+        input="email"
+        inputValue={formData.email}
+        onChange={(e) => handleInputChange("email", e.target.value)}
+      />
+      <InputField
+        label="Password"
+        directive="Enter your password"
+        input="password"
+        inputValue={formData.password}
+        onChange={(e) => handleInputChange("password", e.target.value)}
+      />
+      <div className="w-full" style={{paddingLeft: "0rem"}}>
+        {loading && <Loader LoaderText={"Logging in"} />}
+        <button
+          type="submit"
+          className="w-full py-3.5 rounded-lg bg-[#1a56db] overflow-hidden text-base font-medium text-white"
+          onClick={handleLogin}
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+      
+    <div className="hidden md:flex w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
       <div className="flex flex-col justify-start items-start absolute left-[45px] top-11 overflow-hidden gap-2.5 px-[19px] py-[75px] rounded-[32px] bg-[#1565d8]/90">
         <img
           src="/onboarding.png"
@@ -337,6 +402,7 @@ const login = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
