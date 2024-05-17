@@ -139,7 +139,130 @@ const Signup = () => {
   // console.log("FOO",formData);
 
   return (
-    <div className="w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
+    <div>
+      <div className="flex flex-col h-full w-auto justify-center items-center bg-[#fffefc] overflow-hidden md:hidden">
+  {/* Banner */}
+  <div className="w-full" style={{paddingTop: "5rem"}}>
+    <div className="flex flex-col justify-start items-start gap-4 px-6 py-8 rounded-lg bg-[#1565d8]/90 w-full" style={{paddingLeft: "2rem"}}>
+      <div className="flex justify-start items-start">
+        <p className="text-3xl font-bold text-white">Nustutor</p>
+      </div>
+      <div className="flex justify-start items-start">
+        <p className="text-lg text-white">Tutoring app for students, by students</p>
+      </div>
+    </div>
+  </div>
+
+
+  
+  {/* Form */}
+<div className="flex flex-col justify-start items-center py-16 px-6 gap-8" style={{ paddingLeft: "0rem", maxWidth: "85vw" }}>
+  {/* Step */}
+  <p className="text-sm font-medium text-[#bdbdbd]">STEP 01/03</p>
+  {/* Title */}
+  <div className="flex flex-col justify-start items-center gap-4">
+    <p className="text-3xl font-bold text-black">Register Account!</p>
+    <p className="w-[80%] text-lg text-center text-[#8692a6]">For the purpose of industry regulation, your details are required.</p>
+  </div>
+  
+  {/* Form Fields */}
+  <form>
+    <div className="flex flex-col justify-start items-start gap-6 w-[320px]">
+      {/* Full Name */}
+      <InputField 
+        label="Full Name"
+        directive="Enter your Full Name"
+        input="text"
+        inputValue={formData.fullName}
+        onChange={(e) => handleInputChange('fullName', e.target.value)} 
+        required={'required'} 
+      />
+      {/* Email */}
+      <InputField 
+        label="Email"
+        directive="Enter your Email"
+        input="email"
+        inputValue={formData.email}
+        onChange={(e) => handleInputChange('email', e.target.value)}
+        required={'required'} 
+      />
+      {/* Password */}
+      <InputField 
+        label="Password"
+        directive="Enter your password"
+        input="password"
+        inputValue={formData.password}
+        onChange={(e) => handleInputChange('password', e.target.value)}
+        required={'required'} 
+      />
+      {/* Confirm Password */}
+      <InputField 
+        label="Confirm Password"
+        directive="Re-enter your password"
+        input="password"
+        inputValue={formData.confirmPassword}
+        onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+        required={'required'} 
+      />
+    </div>
+  </form>
+
+  {/* Sign Up Button */}
+  <div className="flex justify-center items-center w-full">
+    <div className="bg-[#1a56db] rounded-lg cursor-pointer" onClick={openModal}>
+      <p className="px-6 py-3.5 text-base font-medium text-white">Signup</p>
+    </div>
+  </div>
+</div>
+
+{/* Modal */}
+{isModalOpen && (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="absolute inset-0 bg-black opacity-50" onClick={closeModal}></div>
+      <div className="z-10 bg-white p-8 rounded-lg relative">
+        {/* Close button */}
+        <button className="absolute top-4 right-4 text-gray-600 cursor-pointer" onClick={closeModal}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Dropdowns */}
+        <Dropdown
+          title="Department"
+          options={['SEECS', 'SMME', 'S3H', 'NBS', 'SCME', 'IGIS', 'SADA']}
+          selectedOption={selectedOptions.Department}
+          onSelect={(value) => handleDropdownSelect('Department', value)}
+        />
+        <Dropdown
+          title="Semester"
+          options={['1', '2', '3', '4', '5', '6', '7', '8']}
+          selectedOption={selectedOptions.Semester}
+          onSelect={(value) => handleDropdownSelect('Semester', value)}
+        />
+        <Dropdown
+          title="Degree Program"
+          options={degrees.map((degree) => degree.degree)}
+          selectedOption={selectedOptions.Degree}
+          onSelect={(value) => handleDropdownSelect('Degree', value)}
+        />
+
+        {/* Sign Up button */}
+        <div style={{paddingLeft: "3rem"}}>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4" onClick={handleSignup}>
+          Sign Up
+        </button>
+        </div>
+      </div>
+    </div>
+  )}
+
+</div>
+
+
+
+
+    <div className="hidden md:flex w-[1440px] h-[900px] relative overflow-hidden bg-[#fffefc]">
   <div className="flex flex-col justify-start items-start absolute left-[45px] top-11 overflow-hidden gap-2.5 px-[19px] py-[75px] rounded-[32px] bg-[#1565d8]/90">
     <img
       src="/onboarding.png"
@@ -421,6 +544,7 @@ const Signup = () => {
   </div>
 )}
 
+</div>
 </div>
   )
 }
