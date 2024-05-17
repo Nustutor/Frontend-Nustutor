@@ -70,7 +70,37 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
   })
 
   return (
-    <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8 cursor-pointer"
+    <div>
+      <div className="flex flex-col justify-start items-start gap-8 cursor-pointer md:hidden" onClick={cardClick}>
+  <div className="flex flex-col justify-start items-start gap-8">
+    <div className="flex justify-center items-center w-full gap-4">
+      <div className="flex flex-col justify-center items-start relative gap-2.5 p-3 rounded-lg bg-white" style={{ boxShadow: "0px 14px 42px 0 rgba(8,15,52,0.06)" }}>
+        <img src={OfferingHero} className="w-full h-[113px] rounded-xl object-cover" />
+        <div className="flex justify-center items-center w-full relative gap-2.5 p-3 rounded-lg bg-[#702dff]/20">
+          <p className="text-xs text-left uppercase text-[#702dff]">{Cuid}</p>
+        </div>
+        <p className="w-full text-sm font-medium capitalize text-[#202020]">{Title}</p>
+        <p className="w-full text-sm font-semibold capitalize text-[#202020]/80">Starts from PKR {OfferingRate}</p>
+        <div className="flex justify-start items-center w-full relative gap-2 rounded-bl-[20px] rounded-br-[20px]">
+          <div className="w-6 h-6">
+            <img src={TutorPfp} className="w-6 h-6 absolute left-0 top-0 rounded-[999px] object-cover" />
+          </div>
+          <div className="flex flex-col justify-start items-start relative gap-1 bg-white">
+            <p className="w-full text-[10px] font-medium capitalize text-[#202020]">{Tutorname}</p>
+            <p className="w-full text-[8px] text-left capitalize text-[#202020]">{TutorContact}</p>
+          </div>
+        </div>
+        <div className="flex justify-center items-center absolute left-[calc(100vw * 838 / 880)] top-[calc(100vw * 22 / 880)] gap-2.5 p-1.5 rounded-[calc(100vw * 50 / 880)] bg-[#ccc]/50">
+          <svg width={8} height={8} viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="self-stretch flex-grow relative" preserveAspectRatio="none">
+            <path d="M4.2065 6.93678C4.09317 6.97678 3.9065 6.97678 3.79317 6.93678C2.8265 6.60678 0.666504 5.23011 0.666504 2.89678C0.666504 1.86678 1.4965 1.03345 2.51984 1.03345C3.1265 1.03345 3.66317 1.32678 3.99984 1.78011C4.3365 1.32678 4.8765 1.03345 5.47984 1.03345C6.50317 1.03345 7.33317 1.86678 7.33317 2.89678C7.33317 5.23011 5.17317 6.60678 4.2065 6.93678Z" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div className="hidden md:flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8 cursor-pointer"
     onClick={cardClick}>
   <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
     <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 w-[880px] gap-[18px]">
@@ -130,6 +160,7 @@ const TutorCard = ({Cuid,OfferingHero,TutorPfp,Suid,Title,TutorName,TutorStatus,
       </div>
     </div>
   </div>
+</div>
 </div>
   )
 }

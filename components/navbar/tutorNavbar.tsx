@@ -3,6 +3,7 @@ import Logo from './logo';
 import Links from './navLinks';
 import TutorNav from '../offerings/tutorNav';
 import { useState } from 'react';
+import Logout from '../logout';
 
 const TutorNavbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,7 +28,12 @@ const TutorNavbar = () => {
             <Links />
             <TutorNav />
           </ul>
+          
+      <div style={{paddingLeft: "2rm"}}>
+          <Logout/>
+          </div>
         </div>
+        
       )}
     </div>
   </div>
