@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react'
 import CourseCard from './courseCard';
 import { useRouter } from 'next/navigation';
 import { get } from 'http';
+import Loader from '../loader';
 
 const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
